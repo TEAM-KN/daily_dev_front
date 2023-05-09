@@ -4,35 +4,62 @@ import { makeStyles } from '@mui/styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
 
 const useStyles = makeStyles(({
-    container: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
+    mainContainer: {
+        maxWidth: '100%',
+        height: '100vh',
+        backgroundSize: 'cover',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    paper: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        backgroundColor: "#f5f5f5",
-        borderRadius: "4px",
+    formContainer: {
+        backgroundColor: '#fff',
+        padding: '2rem',
+        borderRadius: '10px',
+        maxWidth: '400px',
+        width: '100%',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
+    },
+    form: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     input: {
-
+        margin: '8px',
+    },
+    buttonContainer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '100%',
     },
     button: {
-
+        flex: '1',
+        margin: '8px',
+        backgroundColor: "#556cd6",
+        color: "#fff",
+        fontWeight: "bold",
+        borderRadius: "8px",
+        padding: "8px 24px",
+        '&:hover': {
+            backgroundColor: "#1e40af",
+        },
     },
-    icon: {
-
+    divider: {
+        margin: "16px 0",
+        width: "100%",
+        borderBottom: "1px solid #D1D1D1",
     },
     githubButton: {
-
-        backgroundColor: "#24292e",
+        margin: '8px',
+        backgroundColor: "#000",
         color: "#fff",
-        "&:hover": {
-            backgroundColor: "#1f6feb",
-        }
+        fontWeight: "bold",
+        borderRadius: "8px",
+        padding: "8px 24px",
+        '&:hover': {
+            backgroundColor: "#333",
+        },
     }
 }));
 
@@ -47,14 +74,14 @@ export default function LoginForm() {
     }
 
     return (
-        <Container maxWidth="xs" className={classes.container}>
-            <div className={classes.paper}>
+        <Container maxWidth="xs" className={classes.mainContainer}>
+            <div className={classes.formContainer}>
                 <Typography variant="h4" gutterBottom>
-                    로그인
+                    Login
                 </Typography>
-                <form>
+                <form className={classes.form}>
                     <TextField
-                        label="Username"
+                        label="Email"
                         variant="outlined"
                         className={classes.input}
                         value={username}
@@ -68,18 +95,26 @@ export default function LoginForm() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-                        onClick={handleLogin}
-                    >
-                        로그인
-                    </Button>
+                    <div className={classes.buttonContainer}>
+                        <Button
+                            variant="contained"
+                            color="info"
+                            className={classes.button}
+                            onClick={handleLogin}
+                        >
+                            로그인
+                        </Button>
+                        <Button
+                            variant="contained"
+                            className={classes.button}
+                        >
+                            회원가입
+                        </Button>
+                    </div>
                     <Button
                         variant="contained"
                         className={classes.githubButton}
-                        startIcon={<GitHubIcon className={classes.icon} />}
+                        startIcon={<GitHubIcon />}
                     >
                         GitHub 로그인
                     </Button>
