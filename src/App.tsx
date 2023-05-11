@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Login from './view/authentication/login/Login'
+import Login from './view/authentication/login'
 import './index.css'
 
 function App() {

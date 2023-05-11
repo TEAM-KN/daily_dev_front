@@ -2,6 +2,66 @@ import React, { useState } from 'react'
 import { Button, Container, TextField, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
+import { LoginForm } from './index'
+
+export default function LoginForm() {
+    const classes = useStyles();
+    const formData = useState<LoginForm>({ email: '', password: '' })
+
+    const handleLogin = async () => {
+    }
+
+    return (
+        <Container maxWidth="xs" className={classes.mainContainer}>
+            <div className={classes.formContainer}>
+                <Typography variant="h4" gutterBottom>
+                    Login
+                </Typography>
+                <form className={classes.form}>
+                    <TextField
+                        label="Email"
+                        variant="outlined"
+                        className={classes.input}
+                        value={formData.email ?? ''}
+                        // onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <TextField
+                        label="Password"
+                        type="password"
+                        variant="outlined"
+                        className={classes.input}
+                        value={formData.password ?? ''}
+                        // onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <div className={classes.buttonContainer}>
+                        <Button
+                            variant="contained"
+                            color="info"
+                            className={classes.button}
+                            onClick={handleLogin}
+                        >
+                            로그인
+                        </Button>
+                        <Button
+                            variant="contained"
+                            className={classes.button}
+                        >
+                            회원가입
+                        </Button>
+                    </div>
+                    <Button
+                        variant="contained"
+                        className={classes.githubButton}
+                        startIcon={<GitHubIcon />}
+                    >
+                        GitHub 로그인
+                    </Button>
+                </form>
+            </div>
+        </Container>
+    )
+}
+
 
 const useStyles = makeStyles(({
     mainContainer: {
@@ -26,6 +86,7 @@ const useStyles = makeStyles(({
         alignItems: 'center',
     },
     input: {
+        width: '100%',
         margin: '8px',
     },
     buttonContainer: {
@@ -62,64 +123,3 @@ const useStyles = makeStyles(({
         },
     }
 }));
-
-export default function LoginForm() {
-    const classes = useStyles();
-    const [username, setUsername] = useState<string>("")
-    const [password, setPassword] = useState<string>("")
-
-    const handleLogin = () => {
-        console.log("Username:", username)
-        console.log("Password:", password)
-    }
-
-    return (
-        <Container maxWidth="xs" className={classes.mainContainer}>
-            <div className={classes.formContainer}>
-                <Typography variant="h4" gutterBottom>
-                    Login
-                </Typography>
-                <form className={classes.form}>
-                    <TextField
-                        label="Email"
-                        variant="outlined"
-                        className={classes.input}
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <TextField
-                        label="Password"
-                        type="password"
-                        variant="outlined"
-                        className={classes.input}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <div className={classes.buttonContainer}>
-                        <Button
-                            variant="contained"
-                            color="info"
-                            className={classes.button}
-                            onClick={handleLogin}
-                        >
-                            로그인
-                        </Button>
-                        <Button
-                            variant="contained"
-                            className={classes.button}
-                        >
-                            회원가입
-                        </Button>
-                    </div>
-                    <Button
-                        variant="contained"
-                        className={classes.githubButton}
-                        startIcon={<GitHubIcon />}
-                    >
-                        GitHub 로그인
-                    </Button>
-                </form>
-            </div>
-        </Container>
-    )
-}
