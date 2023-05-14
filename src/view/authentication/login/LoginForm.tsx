@@ -3,12 +3,16 @@ import { Button, Container, TextField, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import { LoginForm } from './index'
+import { useForm, Controller } from 'react-hook-form'
+
 
 export default function LoginForm() {
     const classes = useStyles();
-    const formData = useState<LoginForm>({ email: '', password: '' })
+    const { control, handleSubmit, formState: { errors } } = useForm<LoginForm>()
 
-    const handleLogin = async () => {
+    const handleLogin = async (submitData: LoginForm) => {
+
+
     }
 
     return (
@@ -17,28 +21,51 @@ export default function LoginForm() {
                 <Typography variant="h4" gutterBottom>
                     Login
                 </Typography>
-                <form className={classes.form}>
-                    <TextField
-                        label="Email"
-                        variant="outlined"
-                        className={classes.input}
-                        value={formData.email ?? ''}
-                        // onChange={(e) => setUsername(e.target.value)}
+                <form onSubmit={handleSubmit(handleLogin)} className={classes.form}>
+                    <Controller
+                        control={control}
+                        name="email"
+                        rules={{
+                            required: true
+                        }}
+                        render={({field}) => (
+                            <TextField
+                                label="Email"
+                                variant="outlined"
+                                className={classes.input}
+                                value={field.value ?? ''}
+                                onChange={field.onChange}
+                                error={!!errors["email"]}
+                                helperText={errors["email"] && errors["email"]?.message}
+                            />
+                        )}
                     />
-                    <TextField
-                        label="Password"
-                        type="password"
-                        variant="outlined"
-                        className={classes.input}
-                        value={formData.password ?? ''}
-                        // onChange={(e) => setPassword(e.target.value)}
+                    <Controller
+                        control={control}
+                        name="password"
+                        rules={{
+                            required: true
+                        }}
+                        render={({field}) => (
+                            <TextField
+                                label="Password"
+                                type="password"
+                                variant="outlined"
+                                className={classes.input}
+                                value={field.value}
+                                onChange={field.onChange}
+                                error={!!errors["password"]}
+                                helperText={errors["password"] && errors["password"]?.message}
+                            />
+                        )}
                     />
+
                     <div className={classes.buttonContainer}>
                         <Button
+                            type="submit"
                             variant="contained"
                             color="info"
                             className={classes.button}
-                            onClick={handleLogin}
                         >
                             로그인
                         </Button>
