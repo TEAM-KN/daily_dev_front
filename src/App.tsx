@@ -1,7 +1,14 @@
-import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Login from './view/authentication/login'
+// react
+import React, { lazy } from 'react'
+
+// css
 import './index.css'
+
+// routes
+import { createBrowserRouter, BrowserRouter } from 'react-router-dom'
+import Routes from './router'
+
+const Login = lazy(() => import('./view/authentication/login/Login'))
 
 function App() {
 
@@ -13,7 +20,11 @@ function App() {
   ]);
 
   return (
-      <RouterProvider router={ router } />
+      <>
+        <BrowserRouter>
+            <Routes  />
+        </BrowserRouter>
+      </>
   )
 }
 
