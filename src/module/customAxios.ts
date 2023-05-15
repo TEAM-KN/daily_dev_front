@@ -1,8 +1,21 @@
-import axios, { Axios, AxiosInstance } from 'axios'
+import axios, { Axios } from 'axios'
 
-export const customAxios: AxiosInstance = axios.create({
+export const customAxios = axios.create({
     baseURL: `http://localhost:8080`,
-    headers: {
-        access_token: ''
-    }
+    timeout: 60000
 });
+
+customAxios.interceptors.request.use(
+    config => {
+        const header = config.headers || {}
+        const token = localStorage.getItem('access_token')
+        header['Authorization'] = token ? `Bearer ${token}` : ''
+
+        return config
+    },
+    error => Promise.reject(error)
+);
+
+customAxios.interceptors.response.use(
+    resonse => resonse
+);
