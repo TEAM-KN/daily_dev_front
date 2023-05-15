@@ -1,18 +1,29 @@
-import React, { useState } from 'react'
-import { Button, Container, TextField, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import React from 'react'
+import {Button, Container, TextField, Typography} from '@mui/material'
+import {makeStyles} from '@mui/styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import { LoginForm } from './index'
-import { useForm, Controller } from 'react-hook-form'
-
+import {LoginForm} from './index'
+import {Controller, useForm} from 'react-hook-form'
+import axios from "axios";
 
 export default function LoginForm() {
     const classes = useStyles();
     const { control, handleSubmit, formState: { errors } } = useForm<LoginForm>()
 
-    const handleLogin = async (submitData: LoginForm) => {
+    const handleLogin = async (login: LoginForm) => {
+        try {
+            const response = await axios.post<any>(
+                '/auth/login',
+                login
+            )
 
+            const accessToken = response.headers['access-token']
+            if (accessToken)
+                localStorage.setItem('access-token', accessToken)
 
+        } catch (error) {
+
+        }
     }
 
     return (
