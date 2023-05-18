@@ -2,18 +2,18 @@ import React from 'react'
 import {Button, Container, TextField, Typography} from '@mui/material'
 import {makeStyles} from '@mui/styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
-import {LoginForm} from './index'
+import {TLoginForm} from './index'
 import {Controller, useForm} from 'react-hook-form'
-import axios from "axios";
+import axios from 'axios'
 
 export default function LoginForm() {
     const classes = useStyles();
-    const { control, handleSubmit, formState: { errors } } = useForm<LoginForm>()
+    const { control, handleSubmit, formState: { errors } } = useForm<TLoginForm>()
 
-    const handleLogin = async (login: LoginForm) => {
+    const handleLogin = async (login: TLoginForm) => {
         try {
             const response = await axios.post<any>(
-                '/auth/login',
+                '/dab/login',
                 login
             )
 
@@ -22,7 +22,7 @@ export default function LoginForm() {
                 localStorage.setItem('access-token', accessToken)
 
         } catch (error) {
-
+            console.log(error)
         }
     }
 
@@ -30,14 +30,17 @@ export default function LoginForm() {
         <Container maxWidth="xs" className={classes.mainContainer}>
             <div className={classes.formContainer}>
                 <Typography variant="h4" gutterBottom>
-                    Login
+                    로그인
                 </Typography>
                 <form onSubmit={handleSubmit(handleLogin)} className={classes.form}>
                     <Controller
                         control={control}
                         name="email"
                         rules={{
-                            required: true
+                            required: {
+                                value: true,
+                                message: '이메일을 입력해 주세요.'
+                            }
                         }}
                         render={({field}) => (
                             <TextField
@@ -63,7 +66,7 @@ export default function LoginForm() {
                                 type="password"
                                 variant="outlined"
                                 className={classes.input}
-                                value={field.value}
+                                value={field.value ?? ''}
                                 onChange={field.onChange}
                                 error={!!errors["password"]}
                                 helperText={errors["password"] && errors["password"]?.message}

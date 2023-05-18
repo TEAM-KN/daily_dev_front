@@ -1,19 +1,17 @@
-import {RouteObject} from "react-router-dom";
-import {lazy} from "react";
+import {RouteObject} from 'react-router-dom'
+import {lazy} from 'react'
 
 const Login = lazy(() => import('../view/authentication/login/Login'))
 
-export const AuthRoutes: RouteObject = {
+const AuthRoutes: RouteObject = {
     path: '/',
-    element: <></>,
+    element: <Login />,
     children: [
         {
             path: '',
             element: <Login />
-        },
-        {
-            path: 'signin',
-            element: <Login />
         }
     ]
 }
+
+export default AuthRoutes
