@@ -6,11 +6,16 @@ import React from 'react'
 import {BrowserRouter} from 'react-router-dom'
 import Routes from './router'
 
+
 function App() {
   return (
-    <BrowserRouter basename="/dailyf">
-        <Routes />
-    </BrowserRouter>
+        <div style={{
+            background: 'linear-gradient(45deg, #2ea2e6, #ffffff)',
+        }}>
+        <BrowserRouter basename="/dailyf">
+            <Routes />
+        </BrowserRouter>
+        </div>
   )
 }
 
