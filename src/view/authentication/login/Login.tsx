@@ -1,13 +1,13 @@
 import React from 'react'
 import {Button, Container, Divider, Grid, InputAdornment, TextField} from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import {makeStyles} from '@mui/styles'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import PersonIcon from '@mui/icons-material/Person'
 import LockIcon from '@mui/icons-material/Lock'
 import {Controller, useForm} from "react-hook-form"
 import {TLoginForm} from './index'
-import axios from 'axios'
 import Cloud from '../../../assets/images/cloud.svg'
+import {customAxios} from '../../../module/customAxios'
 
 
 const useStyles = makeStyles(({
@@ -59,6 +59,15 @@ const useStyles = makeStyles(({
             },
         },
     },
+    divider: {
+        '&::before': {
+            borderTopColor: '#f3f3f3 !important'
+        },
+        '&::after': {
+            borderTopColor: '#f3f3f3 !important'
+        },
+        color: '#f3f3f3'
+    },
     placeholder: {
         color: '#fff', // Placeholder 색상을 흰색으로 설정
     },
@@ -72,10 +81,11 @@ export default function Login() {
 
     const handleLogin = async (login: TLoginForm) => {
         try {
-            const response = await axios.post(
+            const response = await customAxios.post(
                 '/dailyb/login',
                 login
             )
+            console.log(response)
 
             const accessToken = response.headers['access-token']
             if (accessToken)
@@ -107,7 +117,7 @@ export default function Login() {
                             alignItems: 'center',
                             width: '100%',
                         }}>
-                            <img src={Cloud} />
+                            <img style={{ width: '100px', marginTop: '-72px', paddingBottom: '40px' }} src={Cloud} />
                         </div>
 
                         <form onSubmit={handleSubmit(handleLogin)} className={classes.form}>
@@ -200,11 +210,12 @@ export default function Login() {
                         </form>
 
                         <Divider
-                            color="#fff"
-                            style={{
-                                border: "none",
-                                color: '#fff',
-                            }}
+                            className={classes.divider}
+                            // style={{
+                            //     border: "none",
+                            //     color: 'red',
+                            //     borderTopColor: '#fff'
+                            // }}
                             flexItem
                         >
                             또는

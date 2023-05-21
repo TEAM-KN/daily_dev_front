@@ -17,5 +17,6 @@ customAxios.interceptors.request.use(
 );
 
 customAxios.interceptors.response.use(
-    resonse => resonse
+    response => response,
+    error => console.log('axios error', error)
 );
