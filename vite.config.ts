@@ -8,7 +8,7 @@ const proxyOptions = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: '/dailyf',
+    base: '/',
     server: {
         proxy: {
             '/dailyb': {

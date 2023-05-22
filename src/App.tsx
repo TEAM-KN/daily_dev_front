@@ -11,7 +11,7 @@ function App() {
         <div style={{
             background: 'linear-gradient(45deg, #2ea2e6, #ffffff)',
         }}>
-        <BrowserRouter basename="/dailyf">
+        <BrowserRouter basename="/">
             <Routes />
         </BrowserRouter>
         </div>

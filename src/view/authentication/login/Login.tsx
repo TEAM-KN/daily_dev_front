@@ -7,7 +7,7 @@ import LockIcon from '@mui/icons-material/Lock'
 import {Controller, useForm} from "react-hook-form"
 import {TLoginForm} from './index'
 import Cloud from '../../../assets/images/cloud.svg'
-import {customAxios} from '../../../module/customAxios'
+import axios from 'axios'
 
 
 const useStyles = makeStyles(({
@@ -81,16 +81,18 @@ export default function Login() {
 
     const handleLogin = async (login: TLoginForm) => {
         try {
-            const response = await customAxios.post(
+            const response = await axios.post(
                 '/dailyb/login',
                 login
             )
-            console.log(response)
 
-            const accessToken = response.headers['access-token']
-            if (accessToken)
-                localStorage.setItem('access-token', accessToken)
+            if (response.headers) {
+                const accessToken = response.headers['access-token']
+                if (accessToken)
+                    localStorage.setItem('access-token', accessToken)
+            }
 
+            alert(response.data?.message)
         } catch (error) {
             console.log(error)
         }
