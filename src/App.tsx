@@ -1,7 +1,6 @@
 // react
 import React from 'react'
 
-
 // routes
 import {BrowserRouter} from 'react-router-dom'
 import Routes from './router'
