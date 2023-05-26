@@ -47,7 +47,7 @@ const useStyles = makeStyles(({
                 color: '#fff', // 아이콘 색상을 흰색으로 설정
             },
             '& svg': {
-                color: '#fff', // 아이콘 색상을 흰색으로 설정
+                color: '#fff', // 아이콘 색상을 흰색으로 설정2
             },
         },
         '& .MuiInputLabel-root': {
