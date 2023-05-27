@@ -6,14 +6,19 @@ import {BrowserRouter} from 'react-router-dom'
 import Routes from './router'
 
 
+
 function App() {
   return (
         <div style={{
             background: 'linear-gradient(45deg, #2ea2e6, #ffffff)',
         }}>
-        <BrowserRouter basename="/">
-            <Routes />
-        </BrowserRouter>
+          <div className="bg-blue-500 text-white p-4">
+            Hello, Tailwind CSS!
+          </div>
+          <BrowserRouter basename="/">
+              <Routes />
+          </BrowserRouter>
+        
         </div>
   )
 }
