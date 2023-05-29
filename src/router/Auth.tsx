@@ -8,7 +8,7 @@ const AuthRoutes: RouteObject = {
     element: <Login />,
     children: [
         {
-            path: '',
+            path: '/login',
             element: <Login />
         }
     ]

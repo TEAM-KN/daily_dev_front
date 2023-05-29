@@ -12,9 +12,6 @@ function App() {
         <div style={{
             background: 'linear-gradient(45deg, #2ea2e6, #ffffff)',
         }}>
-          <div className="bg-blue-500 text-white p-4">
-            Hello, Tailwind CSS!
-          </div>
           <BrowserRouter basename="/">
               <Routes />
           </BrowserRouter>
