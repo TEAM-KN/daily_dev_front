@@ -9,14 +9,9 @@ import Routes from './router'
 
 function App() {
   return (
-        <div style={{
-            background: 'linear-gradient(45deg, #2ea2e6, #ffffff)',
-        }}>
-          <BrowserRouter basename="/">
-              <Routes />
-          </BrowserRouter>
-        
-        </div>
+    <BrowserRouter basename="/">
+      <Routes />
+    </BrowserRouter>
   )
 }
 
