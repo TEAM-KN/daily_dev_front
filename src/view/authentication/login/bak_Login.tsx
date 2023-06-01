@@ -213,11 +213,6 @@ export default function Login() {
 
                         <Divider
                             className={classes.divider}
-                            // style={{
-                            //     border: "none",
-                            //     color: 'red',
-                            //     borderTopColor: '#fff'
-                            // }}
                             flexItem
                         >
                             또는
