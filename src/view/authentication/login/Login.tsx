@@ -3,7 +3,7 @@ import Logo from '../../../assets/images/dd_logo.svg'
 
 export default function Login() {
     return (
-      <div className="bg-slate-50 min-h-screen">
+      <div className="bg-slate-50 min-h-screen flex">
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
