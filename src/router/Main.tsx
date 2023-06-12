@@ -1,15 +1,16 @@
 import {RouteObject} from 'react-router-dom'
 import {lazy} from 'react'
 
-const Main = lazy(() => import('../view/Main'))
+const Landing = lazy(() => import('../view/Landing'))
 const Register = lazy(() => import('../view/Register'))
 
 const MainRoutes: RouteObject = {
     path: '/',
+    element: <Landing />,
     children: [
         {
             path: '',
-            element: <Main />
+            element: <Landing />
         },
         {
             path: '/register',

@@ -41,7 +41,9 @@ export default function Main() {
               Daily Dev
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              유명 기술 블로그들의 최신 소식을 메일로 받아보세요.
+            끊임없이 발전하는 기술, Daily Dev와 함께 최신 트렌드를 따라가세요!<br />
+            이곳은 유명 기업들의 기술 관련 글을 모아볼 수 있는 공간입니다.<br />
+            로그인 후 구독 서비스를 이용하면, 관심있는 기업들의 글을 메일로 받을 수 있어요.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
