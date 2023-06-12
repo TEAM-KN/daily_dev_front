@@ -153,7 +153,7 @@ export default function Register() {
                 </label>
                 <div className="mt-2">
                   <input
-                    placeholder="4~12자 이내로 입력해주세요"
+                    placeholder="8자 이내의 영문, 숫자 조합으로 입력해주세요"
                     type="password"
                     name="password"
                     id="password"
