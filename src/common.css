@@ -3,8 +3,3 @@
 @import "tailwindcss/utilities";
 
 /* 여기에 Tailwind CSS 클래스를 사용하여 스타일을 작성하세요 */
-
-* {
-    margin: 0;
-    padding: 0;
-}
