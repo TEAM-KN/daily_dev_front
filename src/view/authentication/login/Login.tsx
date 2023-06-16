@@ -1,248 +1,78 @@
 import React from 'react'
-import {Button, Container, Divider, Grid, InputAdornment, TextField} from '@mui/material'
-import {makeStyles} from '@mui/styles'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import PersonIcon from '@mui/icons-material/Person'
-import LockIcon from '@mui/icons-material/Lock'
-import {Controller, useForm} from "react-hook-form"
-import {TLoginForm} from './index'
-import Cloud from '../../../assets/images/cloud.svg'
-import axios from 'axios'
-
-
-const useStyles = makeStyles(({
-    formContainer: {
-        backgroundColor: '#fffffff',
-        padding: '2rem',
-        borderRadius: '10px',
-        maxWidth: '400px',
-        width: '100%',
-        boxShadow: '0 0 10px rgba(46, 162, 230, 0.5)',
-    },
-    buttonContainer: {
-        marginTop: '16px',
-        marginBottom: '10px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%',
-    },
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    input: {
-        width: '100%',
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: '#fff', // 테두리 색상을 흰색으로 설정
-            },
-            '& input': {
-                color: '#fff', // 텍스트 색상을 흰색으로 설정
-            },
-            '& input::placeholder': {
-                color: '#fff', // placeholder 색상을 흰색으로 설정
-            },
-            '& label': {
-                color: '#fff', // 아이콘 색상을 흰색으로 설정
-            },
-            '& svg': {
-                color: '#fff', // 아이콘 색상을 흰색으로 설정2
-            },
-        },
-        '& .MuiInputLabel-root': {
-            color: '#fff', // Label 색상을 흰색으로 설정
-        },
-        '&:hover .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: '#0459b0', // 마우스 호버 시 테두리 색상 변경
-            },
-        },
-    },
-    divider: {
-        '&::before': {
-            borderTopColor: '#f3f3f3 !important'
-        },
-        '&::after': {
-            borderTopColor: '#f3f3f3 !important'
-        },
-        color: '#f3f3f3'
-    },
-    placeholder: {
-        color: '#fff', // Placeholder 색상을 흰색으로 설정
-    },
-}))
-
+import Logo from '../../../assets/images/dd_logo.svg'
 
 export default function Login() {
-    const classes = useStyles()
-
-    const { control, handleSubmit, formState: { errors } } = useForm<TLoginForm>()
-
-    const handleLogin = async (login: TLoginForm) => {
-        try {
-            const response = await axios.post(
-                '/dailyb/login',
-                login
-            )
-
-            if (response.headers) {
-                const accessToken = response.headers['access-token']
-                if (accessToken)
-                    localStorage.setItem('access-token', accessToken)
-            }
-
-            alert(response.data?.message)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     return (
-        <Grid container spacing={12}>
-            <Grid item xs={12}>
-                <Container
-                    style={{
-                        maxWidth: '100%',
-                        height: '100vh',
-                        backgroundSize: 'cover',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                    maxWidth="xs"
+      <div className="bg-slate-50 min-h-screen flex">
+        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+            <img
+              className="mx-auto h-10 w-auto"
+              src={Logo}
+              alt="Daily Dev"
+            />
+            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+              로그인
+            </h2>
+          </div>
+  
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-md px-6 py-12 shadow-lg rounded-lg bg-white">
+            <form className="space-y-6" action="#" method="POST">
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                  이메일
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+  
+              <div>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                    비밀번호
+                  </label>
+                </div>
+                <div className="mt-2">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                    <div className={classes.formContainer}>
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: '100%',
-                        }}>
-                            <img style={{ width: '100px', marginTop: '-72px', paddingBottom: '40px' }} src={Cloud} />
-                        </div>
-
-                        <form onSubmit={handleSubmit(handleLogin)} className={classes.form}>
-                            <Controller
-                                control={control}
-                                name="email"
-                                rules={{
-                                    required: {
-                                        value: true,
-                                        message: '이메일을 입력해 주세요.'
-                                    }
-                                }}
-                                render={({field}) => (
-                                    <TextField
-                                        style={{
-                                            margin: '8px'
-                                        }}
-                                        size="medium"
-                                        label="Email ID"
-                                        variant="outlined"
-                                        className={classes.input}
-                                        value={field.value ?? ''}
-                                        onChange={field.onChange}
-                                        error={!!errors["email"]}
-                                        helperText={errors["email"] && errors["email"]?.message}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <PersonIcon fontSize="small" color="disabled" />
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                    />
-                                )}
-                            />
-                            <Controller
-                                control={control}
-                                name="password"
-                                rules={{
-                                    required: {
-                                        value: true,
-                                        message: '비밀번호를 입력해주세요.'
-                                    }
-                                }}
-                                render={({field}) => (
-                                    <TextField
-                                        style={{
-                                            margin: '8px'
-                                        }}
-                                        label="Password"
-                                        type="password"
-                                        variant="outlined"
-                                        className={classes.input}
-                                        value={field.value ?? ''}
-                                        onChange={field.onChange}
-                                        error={!!errors["password"]}
-                                        helperText={errors["password"] && errors["password"]?.message}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <LockIcon fontSize="small" color="disabled" />
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                    />
-                                )}
-                            />
-
-                            <div className={classes.buttonContainer}>
-                                <Button
-                                    sx={{
-                                        '&:hover': {
-                                            backgroundColor: "#1e40af",
-                                        },
-                                    }}
-                                    style={{
-                                        flex: '1',
-                                        backgroundColor: "#2ea2e6",
-                                        color: "#fff",
-                                        fontWeight: "bold",
-                                        borderRadius: "8px",
-                                        padding: "8px 24px"
-                                    }}
-                                    type="submit"
-                                    variant="contained"
-                                >
-                                    로그인
-                                </Button>
-                            </div>
-                        </form>
-
-                        <Divider
-                            className={classes.divider}
-                            // style={{
-                            //     border: "none",
-                            //     color: 'red',
-                            //     borderTopColor: '#fff'
-                            // }}
-                            flexItem
-                        >
-                            또는
-                        </Divider>
-
-                        <div className={classes.buttonContainer}>
-                            <Button
-                                style={{
-                                    flex: 1,
-                                    backgroundColor: '#333',
-                                    color: '#fff',
-                                    fontWeight: 'bold',
-                                    borderRadius: '8px',
-                                    padding: '10px 24px'
-                                }}
-                                type="button"
-                                variant="contained"
-                                startIcon={<GitHubIcon />}
-                            >
-                                GitHub 로그인
-                            </Button>
-                        </div>
-                    </div>
-                </Container>
-            </Grid>
-        </Grid>
+                  로그인
+                </button>
+              </div>
+              
+            </form>
+  
+            
+          </div>
+          <p className="mt-10 text-center text-sm text-gray-500">
+              회원이 아니신가요?
+              <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 ml-2">
+                회원가입
+              </a>
+            </p>
+        </div>
+       
+      </div>
     )
-}
+  }
+  
