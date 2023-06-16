@@ -6,7 +6,6 @@ const Register = lazy(() => import('../view/Register'))
 
 const MainRoutes: RouteObject = {
     path: '/',
-    element: <Landing />,
     children: [
         {
             path: '',
