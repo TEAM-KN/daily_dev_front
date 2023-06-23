@@ -1,6 +1,6 @@
-import React from "react";
-import Logo from "../../../assets/images/dd_logo.svg";
-import Header from "../../../components/Header";
+import React from 'react'
+import Logo from '../../../assets/images/dd_logo.svg'
+import Header from '../../../components/Header'
 
 export default function Login() {
   return (
@@ -75,5 +75,5 @@ export default function Login() {
         </p>
       </div>
     </div>
-  );
+  )
 }

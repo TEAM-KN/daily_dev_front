@@ -1,49 +1,49 @@
-import { useState } from "react";
+import { useState } from 'react'
 import {
   PhotoIcon,
   ExclamationCircleIcon,
   CheckCircleIcon,
-} from "@heroicons/react/24/solid";
-import Header from "../components/Header";
+} from '@heroicons/react/24/solid'
+import Header from '../components/Header'
 
 interface Service {
-  id: number;
-  name: string;
+  id: number
+  name: string
 }
 
 const services: Service[] = [
   {
     id: 1,
-    name: "카카오",
+    name: '카카오',
   },
   {
     id: 2,
-    name: "네이버",
+    name: '네이버',
   },
   {
     id: 3,
-    name: "배달의민족",
+    name: '배달의민족',
   },
   {
     id: 4,
-    name: "토스",
+    name: '토스',
   },
   {
     id: 5,
-    name: "당근마켓",
+    name: '당근마켓',
   },
-];
+]
 
 export default function Register() {
-  const [checkedIdList, setCheckedIdList] = useState<number[]>([]);
+  const [checkedIdList, setCheckedIdList] = useState<number[]>([])
 
   const changeHandler = (checked: boolean, id: number) => {
     if (checked) {
-      setCheckedIdList([...checkedIdList, id]);
+      setCheckedIdList([...checkedIdList, id])
     } else {
-      setCheckedIdList(checkedIdList.filter((el) => el !== id));
+      setCheckedIdList(checkedIdList.filter((el) => el !== id))
     }
-  };
+  }
 
   return (
     <main className="isolate bg-slate-50 px-6 py-24 sm:py-32 lg:px-8">
@@ -228,5 +228,5 @@ export default function Register() {
         </div>
       </form>
     </main>
-  );
+  )
 }
