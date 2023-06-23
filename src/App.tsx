@@ -2,10 +2,8 @@
 import React from 'react'
 
 // routes
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import Routes from './router'
-
-
 
 function App() {
   return (
