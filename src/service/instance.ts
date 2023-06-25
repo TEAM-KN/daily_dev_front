@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://http://3.239.26.220:8080/dailyb'
+//TODO: 환경변수로 변경하기
+const BASE_URL = 'http://3.239.26.220:8080/dailyb'
 
 export const customAxios = axios.create({
   baseURL: BASE_URL,
@@ -15,7 +16,7 @@ customAxios.interceptors.request.use(
 
     return config
   },
-  (error) => Promise.reject(error),
+  (error: any) => Promise.reject(error),
 )
 
 customAxios.interceptors.response.use(
@@ -43,5 +44,5 @@ customAxios.interceptors.response.use(
 
     return response
   },
-  (error) => console.log('axios error', error),
+  (error: any) => console.log('axios error', error),
 )

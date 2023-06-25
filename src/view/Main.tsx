@@ -1,8 +1,13 @@
 import React from 'react'
 import Header from '../components/Header'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
+import * as Apis from '../service/apis'
 
 export default function Main() {
+  Apis.getContents().then((data) => {
+    console.log(data)
+  })
+
   return (
     <main className="px-6 py-24 sm:py-32 lg:px-8">
       <Header />
