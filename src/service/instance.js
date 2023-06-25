@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+const BASE_URL = 'http://http://3.239.26.220:8080/dailyb'
+
 export const customAxios = axios.create({
-  baseURL: `http://http://3.239.26.220:8080/dailyb`,
+  baseURL: BASE_URL,
   timeout: 60000,
 })
 
