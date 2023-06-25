@@ -15,7 +15,7 @@ export default function Header() {
             <img className="h-8 w-auto" src={Logo} alt="Daily Dev" />
           </a>
         </div>
-        // Todo: 로그인 시, 마이페이지 링크로 변경
+        {/* Todo: 로그인 시, 마이페이지 링크로 변경 */}
         {/* <div className="flex items-center">
           <a href="#" className="w-10 h-10">
             <span className="sr-only">마이페이지</span>
