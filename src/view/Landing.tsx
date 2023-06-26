@@ -28,22 +28,23 @@ export default function Landing() {
               끊임없이 발전하는 기술, Daily Dev와 함께 최신 트렌드를 따라가세요!
               <br />
               이곳은 유명 기업들의 기술 관련 글을 모아볼 수 있는 공간입니다.
-              <br />
-              로그인 후 구독 서비스를 이용하면, 관심있는 기업들의 글을 메일로
-              받을 수 있어요.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="/login"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                로그인
-              </a>
+            <div className="inline-flex relative rounded-full px-3 py-1 mt-5 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+              관심 있는 기업의 글을 메일로 받아보고 싶으신가요?
               <a
                 href="/register"
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="font-semibold text-indigo-600 inline-block ml-2"
               >
-                회원가입 <span aria-hidden="true">→</span>
+                <span className="absolute inset-0" aria-hidden="true"></span>
+                회원가입<span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+            <div className="mt-14 flex items-center justify-center gap-x-6">
+              <a
+                href="/main"
+                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                시작하기
               </a>
             </div>
           </div>
