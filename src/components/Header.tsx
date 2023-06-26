@@ -23,7 +23,10 @@ export default function Header() {
           </a>
         </div> */}
         <div>
-          <a href="#" className="text-md font-semibold leading-6 text-gray-900">
+          <a
+            href="/login"
+            className="text-md font-semibold leading-6 text-gray-900"
+          >
             로그인 <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
