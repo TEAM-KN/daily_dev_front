@@ -4,13 +4,20 @@ type SitesButtonProps = {
   sites: []
   currentSiteCode: string
   setCurrentSiteCode: React.Dispatch<React.SetStateAction<string>>
+  filterPosts: (selectedSiteCode: string) => void
 }
 
 export default function SitesButton({
   sites,
   currentSiteCode,
   setCurrentSiteCode,
+  filterPosts,
 }: SitesButtonProps) {
+  const changeSite = (siteCode: string) => {
+    setCurrentSiteCode(siteCode)
+    filterPosts(siteCode)
+  }
+
   return (
     <>
       {sites.map(
@@ -25,8 +32,8 @@ export default function SitesButton({
               </button>
             ) : (
               <button
-                onClick={() => setCurrentSiteCode(siteCode)}
-                className="inline-block px-6 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white cursor-pointer"
+                onClick={() => changeSite(siteCode)}
+                className="inline-block px-6 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white cursor-pointer transition duration-200"
               >
                 {siteName}
               </button>

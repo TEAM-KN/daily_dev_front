@@ -40,11 +40,27 @@ export default function Main() {
       return result
     },
     {
+      // staleTime: 10 * 60 * 1000, // 10분 동안 데이터를 캐시로부터 확인하고 API를 호출하지 않음
       onSuccess: (data) => {
-        setAllPosts(data)
+        if (currentSiteCode === 'ALL') {
+          setAllPosts(data)
+        }
       },
     },
   )
+
+  const filterPosts = (selectedSiteCode: string) => {
+    const filterdPosts = contents.filter(
+      ({ siteCode }: any) => selectedSiteCode === siteCode,
+    )
+
+    setCurrentPageIndex(1)
+    if (selectedSiteCode === 'ALL') {
+      setAllPosts(contents)
+    } else {
+      setAllPosts(filterdPosts)
+    }
+  }
 
   useEffect(() => {
     const indexOfLastPost: number = currentPageIndex * postsPerPage
@@ -85,6 +101,7 @@ export default function Main() {
                 sites={sites}
                 currentSiteCode={currentSiteCode}
                 setCurrentSiteCode={setCurrentSiteCode}
+                filterPosts={filterPosts}
               />
             </ul>
           </section>
