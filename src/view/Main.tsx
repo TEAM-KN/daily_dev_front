@@ -11,13 +11,12 @@ type PaginationButtonProps = {
 }
 
 export default function Main() {
-  const postsPerPage: number = 15 // 페이지당 보여줄 게시물 수
-  const [viewContents, setViewContents] = useState([]) // 조회한 전체 콘텐츠 목록
-  const [currentSiteCode, setCurrentSiteCode] = useState('ALL') // 현재 사이트 분류
-  const [currentPage, setCurrentPage] = useState(1) //현재 페이지 번호
-  const [pageLength, setPageLength] = useState(0)
-  const [currentPosts, setCurrentPosts] = useState<number[]>([])
-  const [pageLengthArray, setPageLengthArray] = useState<number[]>([])
+  const postsPerPage: number = 15 // 한번에 보여줄 글 수
+  const [allPosts, setAllPosts] = useState([]) // 조회한 글의 전체 목록
+  const [currentPosts, setCurrentPosts] = useState<number[]>([]) // 현재 보여질 글
+  const [currentPageIndex, setCurrentPageIndex] = useState(1) //현재 페이지네이션 인덱스
+  const [pagenationIndex, setPagenationIndex] = useState<number[]>([]) // 페이지네이션 인덱스
+  const [currentSiteCode, setCurrentSiteCode] = useState('ALL') // 선택된 사이트 코드명
 
   // 전체 사이트 조회
   const { data: sites } = useQuery('sites', async () => {
@@ -45,36 +44,23 @@ export default function Main() {
     },
     {
       onSuccess: (data) => {
-        setViewContents(data)
+        setAllPosts(data)
       },
     },
   )
 
-  useEffect(() => {
-    const indexOfLastPost: number = currentPage * postsPerPage
-    const indexOfFirstPost: number = indexOfLastPost - postsPerPage
-    setCurrentPosts(viewContents.slice(indexOfFirstPost, indexOfLastPost))
-
-    const pageLength: number = Math.ceil(viewContents.length / postsPerPage)
-
-    setPageLengthArray(
-      Array.from({ length: pageLength }, (_, index) => index + 1),
-    )
-    setPageLength(pageLengthArray.length)
-  }, [viewContents, currentPage, postsPerPage])
-
   // 이전버튼
   const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1)
+    if (currentPageIndex > 1) {
+      setCurrentPageIndex((prevPage) => prevPage - 1)
     }
   }
 
   // 다음 버튼
   const goToNextPage = () => {
-    const totalPages = Math.ceil(viewContents.length / postsPerPage)
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1)
+    const totalPages = Math.ceil(allPosts.length / postsPerPage)
+    if (currentPageIndex < totalPages) {
+      setCurrentPageIndex((prevPage) => prevPage + 1)
     }
   }
 
@@ -111,11 +97,23 @@ export default function Main() {
     )
   }
 
+  useEffect(() => {
+    const indexOfLastPost: number = currentPageIndex * postsPerPage
+    const indexOfFirstPost: number = indexOfLastPost - postsPerPage
+    setCurrentPosts(allPosts.slice(indexOfFirstPost, indexOfLastPost))
+    setPagenationIndex(
+      Array.from(
+        { length: Math.ceil(allPosts.length / postsPerPage) },
+        (_, index) => index + 1,
+      ),
+    )
+  }, [allPosts, currentPageIndex, postsPerPage])
+
   // 페이지네이션 버튼
   const PaginationButton = ({ onClick, number }: PaginationButtonProps) => {
     return (
       <>
-        {number === currentPage ? (
+        {number === currentPageIndex ? (
           <button
             type="button"
             aria-current="page"
@@ -182,7 +180,7 @@ export default function Main() {
                   </li>
                 ))}
             </ul>
-            {pageLength <= 1 && (
+            {pagenationIndex.length > 1 && (
               <div className="flex justify-center mt-14">
                 <nav
                   className="isolate inline-flex -space-x-px rounded-md shadow-sm"
@@ -196,11 +194,11 @@ export default function Main() {
                     <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
                   </button>
 
-                  {pageLengthArray.map((number) => (
+                  {pagenationIndex.map((number) => (
                     <PaginationButton
                       key={number}
                       onClick={() => {
-                        setCurrentPage(number)
+                        setCurrentPageIndex(number)
                       }}
                       number={number}
                     />
