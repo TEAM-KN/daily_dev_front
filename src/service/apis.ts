@@ -17,3 +17,11 @@ export const getContentsOfSite = async (site: string): Promise<any> => {
   const { data } = await customAxios.get(`/content/site?siteCode=${site}`)
   return data
 }
+
+// 회원가입
+
+// 이메일 중복확인
+export const getAuthIsCheck = async (email: string): Promise<any> => {
+  const { data } = await customAxios.get(`/auth/isCheck?email=${email}`)
+  return data
+}
