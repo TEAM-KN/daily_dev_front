@@ -48,27 +48,27 @@ export default function PostList({ currentPosts }: PostListProps) {
           <a
             href={content.link}
             target="_blank"
-            className="block py-8 px-6 cursor-pointer hover:bg-gray-50 transition duration-200"
+            className="block sm:py-8 sm:px-6 py-6 px-2 cursor-pointer hover:bg-gray-50 transition duration-200"
           >
             <div className="flex items-center">
               <strong
-                className={`rounded-full px-3 py-1.5 font-medium ${color(
+                className={`text-sm sm:text-base rounded-full px-3 py-1.5 font-medium ${color(
                   content.siteCode,
                 )}`}
               >
                 {content.siteName}
               </strong>
-              <span className="text-sm text-gray-400 ml-4">
+              <span className="text-xs sm:text-sm text-gray-400 ml-4">
                 {content.author}
               </span>
-              <span className="text-sm text-gray-400 before:content-['|'] before:mx-3 before:text-gray-200">
+              <span className="text-xs sm:text-sm text-gray-400 before:content-['|'] before:mx-3 before:text-gray-200">
                 {content.regDtm}
               </span>
             </div>
-            <p className="mt-4 line-clamp-1 text-2xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600 break-keep">
+            <p className="mt-2 sm:mt-4 line-clamp-1 text-xl sm:text-2xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600 break-keep">
               {content.title}
             </p>
-            <p className="mt-3 line-clamp-1 text-sm leading-6 text-gray-600 break-keep">
+            <p className="mt-1 sm:mt-3 line-clamp-1 text-xs sm:text-sm leading-6 text-gray-600 break-keep">
               {content.description}
             </p>
           </a>
