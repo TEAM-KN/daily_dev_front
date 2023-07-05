@@ -6,6 +6,7 @@ import Loading from '../components/Loading'
 import Pagination from '../components/Pagination'
 import SitesButton from '../components/SitesButton'
 import PostList from '../components/PostList'
+import ScrollTopButton from '../components/ScrollTopButton'
 
 export default function Main() {
   const postsPerPage: number = 15 // 한번에 보여줄 글 수
@@ -123,6 +124,7 @@ export default function Main() {
               </div>
             )}
           </section>
+          <ScrollTopButton />
         </div>
       )}
     </main>
