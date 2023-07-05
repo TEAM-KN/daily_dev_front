@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
-import * as Apis from '../service/apis'
+import { getSites, getContents } from '../service/apis'
 import { useQuery } from 'react-query'
 import Loading from '../components/Loading'
 // import Pagination from '../components/Pagination'
@@ -19,7 +19,7 @@ export default function Main() {
 
   // 전체 사이트 조회
   const { data: sites } = useQuery('sites', async () => {
-    const data = await Apis.getSites()
+    const data = await getSites()
     const result = data.map(
       ({ siteCode, siteName }: { siteCode: string; siteName: string }) => ({
         siteName,
@@ -37,7 +37,7 @@ export default function Main() {
   const { data: contents, isLoading: contentsIsLoading } = useQuery(
     'contents',
     async () => {
-      const data = await Apis.getContents()
+      const data = await getContents()
       const result = data.reverse()
       return result
     },
