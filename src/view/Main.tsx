@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
-import * as Apis from '../service/apis'
+import { getSites, getContents } from '../service/apis'
 import { useQuery } from 'react-query'
 import Loading from '../components/Loading'
-import Pagination from '../components/Pagination'
+// import Pagination from '../components/Pagination'
 import SitesButton from '../components/SitesButton'
 import PostList from '../components/PostList'
+import ScrollTopButton from '../components/ScrollTopButton'
+import MoreButton from '../components/MoreButton'
 
 export default function Main() {
   const postsPerPage: number = 15 // 한번에 보여줄 글 수
@@ -17,7 +19,7 @@ export default function Main() {
 
   // 전체 사이트 조회
   const { data: sites } = useQuery('sites', async () => {
-    const data = await Apis.getSites()
+    const data = await getSites()
     const result = data.map(
       ({ siteCode, siteName }: { siteCode: string; siteName: string }) => ({
         siteName,
@@ -35,7 +37,7 @@ export default function Main() {
   const { data: contents, isLoading: contentsIsLoading } = useQuery(
     'contents',
     async () => {
-      const data = await Apis.getContents()
+      const data = await getContents()
       const result = data.reverse()
       return result
     },
@@ -64,8 +66,13 @@ export default function Main() {
 
   useEffect(() => {
     const indexOfLastPost: number = currentPageIndex * postsPerPage
-    const indexOfFirstPost: number = indexOfLastPost - postsPerPage
-    setCurrentPosts(allPosts.slice(indexOfFirstPost, indexOfLastPost))
+    // const indexOfFirstPost: number = indexOfLastPost - postsPerPage
+
+    // slice 첫번째 인자값
+    // 더보기 사용할 경우 : 1
+    // 페이지네이션 사용할 경우 : indexOfFirstPost
+    setCurrentPosts(allPosts.slice(1, indexOfLastPost))
+
     setPageIndexArray(
       Array.from(
         { length: Math.ceil(allPosts.length / postsPerPage) },
@@ -73,20 +80,6 @@ export default function Main() {
       ),
     )
   }, [allPosts, currentPageIndex, postsPerPage])
-
-  // 이전버튼
-  const goToPreviousIndex = () => {
-    if (currentPageIndex > 1) {
-      setCurrentPageIndex((prevPage) => prevPage - 1)
-    }
-  }
-
-  // 다음 버튼
-  const goToNextIndex = () => {
-    if (currentPageIndex < pageIndexArray.length) {
-      setCurrentPageIndex((prevPage) => prevPage + 1)
-    }
-  }
 
   return (
     <main className="px-6 py-24 sm:py-32 lg:px-8">
@@ -112,17 +105,25 @@ export default function Main() {
               </ul>
             )}
             {pageIndexArray.length > 1 && (
+              <div className="flex justify-center mt-12 sm:mt-20">
+                <MoreButton
+                  currentPageIndex={currentPageIndex}
+                  pageIndexArray={pageIndexArray}
+                  setCurrentPageIndex={setCurrentPageIndex}
+                />
+              </div>
+            )}
+            {/* {pageIndexArray.length > 1 && (
               <div className="flex justify-center mt-14">
                 <Pagination
-                  goToPreviousIndex={goToPreviousIndex}
-                  goToNextIndex={goToNextIndex}
                   pageIndexArray={pageIndexArray}
                   currentPageIndex={currentPageIndex}
                   setCurrentPageIndex={setCurrentPageIndex}
                 />
               </div>
-            )}
+            )} */}
           </section>
+          <ScrollTopButton />
         </div>
       )}
     </main>
