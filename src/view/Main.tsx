@@ -82,23 +82,21 @@ export default function Main() {
   }, [allPosts, currentPageIndex, postsPerPage])
 
   return (
-    <main className="px-6 py-24 sm:py-32 lg:px-8">
+    <main className="px-0 sm:px-6 py-24 sm:py-32 lg:px-8">
       <Header />
       {contentsIsLoading ? (
         <Loading />
       ) : (
         <div className="mx-auto max-w-6xl">
-          <section className=" flex justify-between">
-            <ul className="flex flex-wrap text-md font-medium text-center text-gray-500 dark:text-gray-400">
-              <SitesButton
-                sites={sites}
-                currentSiteCode={currentSiteCode}
-                setCurrentSiteCode={setCurrentSiteCode}
-                filterPosts={filterPosts}
-              />
-            </ul>
+          <section className="flex justify-between">
+            <SitesButton
+              sites={sites}
+              currentSiteCode={currentSiteCode}
+              setCurrentSiteCode={setCurrentSiteCode}
+              filterPosts={filterPosts}
+            />
           </section>
-          <section className="mt-12">
+          <section className="sm:mt-12 mt-6 px-4 sm:px-0">
             {contents && (
               <ul>
                 <PostList currentPosts={currentPosts} />
