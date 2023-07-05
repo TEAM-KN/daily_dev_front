@@ -3,7 +3,7 @@ import Header from '../components/Header'
 
 export default function Landing() {
   return (
-    <main className="bg-white">
+    <main className="bg-white h-screen overflow-hidden">
       <Header />
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
@@ -21,16 +21,16 @@ export default function Landing() {
 
         <section className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900">
               Daily Dev
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              끊임없이 발전하는 기술, Daily Dev와 함께 최신 트렌드를 따라가세요!
-              <br />
+            <p className="mt-6 text-md sm:text-lg text-gray-600 break-keep leading-7 sm:leading-8">
+              끊임없이 발전하는 기술, Daily Dev와 함께 최신 트렌드를 따라가세요!{' '}
+              <br className="hidden sm:block" />
               이곳은 유명 기업들의 기술 관련 글을 모아볼 수 있는 공간입니다.
             </p>
-            <div className="inline-flex relative rounded-full px-3 py-1 mt-5 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              관심 있는 기업의 글을 메일로 받아보고 싶으신가요?
+            <div className="inline-flex flex-wrap justify-center relative rounded-full px-4 py-1 mt-6 text-xs sm:text-sm leading-5 sm:leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+              관심 있는 기업의 글을 구독하고 싶으신가요?
               <a
                 href="/register"
                 className="font-semibold text-indigo-600 inline-block ml-2"
