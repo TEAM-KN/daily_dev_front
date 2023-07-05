@@ -70,19 +70,28 @@ function GoToNextButton({ goToNextIndex }: GoToNextButtonProps) {
 
 // 페이지네이션 그룹
 type PaginationProps = {
-  goToPreviousIndex: () => void
-  goToNextIndex: () => void
   pageIndexArray: number[]
   currentPageIndex: number
   setCurrentPageIndex: React.Dispatch<React.SetStateAction<number>>
 }
 export default function Pagination({
-  goToPreviousIndex,
-  goToNextIndex,
   pageIndexArray,
   currentPageIndex,
   setCurrentPageIndex,
 }: PaginationProps) {
+  // 이전버튼
+  const goToPreviousIndex = () => {
+    if (currentPageIndex > 1) {
+      setCurrentPageIndex((prevPage) => prevPage - 1)
+    }
+  }
+
+  // 다음 버튼
+  const goToNextIndex = () => {
+    if (currentPageIndex < pageIndexArray.length) {
+      setCurrentPageIndex((prevPage) => prevPage + 1)
+    }
+  }
   return (
     <nav
       className="isolate inline-flex -space-x-px rounded-md shadow-sm"
