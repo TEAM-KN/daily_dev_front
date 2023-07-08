@@ -2,21 +2,19 @@
 import React from 'react'
 
 // routes
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import Routes from './router'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
-
+const queryClient = new QueryClient()
 
 function App() {
   return (
-        <div style={{
-            background: 'linear-gradient(45deg, #2ea2e6, #ffffff)',
-        }}>
-          <BrowserRouter basename="/">
-              <Routes />
-          </BrowserRouter>
-        
-        </div>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter basename="/">
+        <Routes />
+      </BrowserRouter>
+    </QueryClientProvider>
   )
 }
 
