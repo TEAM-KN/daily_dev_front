@@ -15,21 +15,21 @@ export default function Header() {
             <img className="h-8 w-auto" src={Logo} alt="Daily Dev" />
           </a>
         </div>
-        {/* Todo: 로그인 시, 마이페이지 링크로 변경 */}
-        {/* <div className="flex items-center">
-          <a href="#" className="w-10 h-10">
+        {localStorage.getItem('access-token') ? (
+          <a href="/mypage">
             <span className="sr-only">마이페이지</span>
-            <UserCircleIcon className="text-gray-300" aria-hidden="true" />
+            <UserCircleIcon className="w-11 text-gray-300" aria-hidden="true" />
           </a>
-        </div> */}
-        <div>
-          <a
-            href="/login"
-            className="text-md font-semibold leading-6 text-gray-900"
-          >
-            로그인 <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
+        ) : (
+          <div>
+            <a
+              href="/login"
+              className="text-md font-semibold leading-6 text-gray-900"
+            >
+              로그인 <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        )}
       </nav>
     </header>
   )
