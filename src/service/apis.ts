@@ -20,8 +20,14 @@ export const getContentsOfSite = async (site: string): Promise<any> => {
 
 // 회원가입
 export const postAuthJoin = async (formData: object): Promise<any> => {
-  const { data } = await customAxios.post(`/auth/join`, formData)
-  return data
+  try {
+    const response = await customAxios.post(`/auth/join`, formData)
+    const accessToken = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NDFAZGFpbHkuZGV2IiwiaWF0IjoxNjg5MDA2MTE0LCJleHAiOjE2ODkwMDk3MTR9.I8sr8Nmyb2x9GFXh8QdXDUbFu8jjJNFVqv9f9mF1Hgc`
+    localStorage.setItem('access-token', accessToken)
+    return response.data
+  } catch (error: any) {
+    throw new Error(error)
+  }
 }
 
 // 이메일 중복확인
