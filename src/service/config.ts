@@ -6,12 +6,13 @@ const BASE_URL = 'http://3.239.26.220:8080/dailyb'
 export const customAxios = axios.create({
   baseURL: BASE_URL,
   timeout: 60000,
+  // withCredentials: true,
 })
 
 customAxios.interceptors.request.use(
   (config) => {
     const header = config.headers || {}
-    const token = localStorage.getItem('access_token')
+    const token = localStorage.getItem('access-token')
     header.Authorization = token ? `Bearer ${token}` : ''
 
     return config
