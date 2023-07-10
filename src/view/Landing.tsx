@@ -29,16 +29,19 @@ export default function Landing() {
               <br className="hidden sm:block" />
               이곳은 유명 기업들의 기술 관련 글을 모아볼 수 있는 공간입니다.
             </p>
-            <div className="inline-flex flex-wrap justify-center relative rounded-full px-4 py-1 mt-6 text-xs sm:text-sm leading-5 sm:leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              관심 있는 기업의 글을 구독하고 싶으신가요?
-              <a
-                href="/register"
-                className="font-semibold text-indigo-600 inline-block ml-2"
-              >
-                <span className="absolute inset-0" aria-hidden="true"></span>
-                회원가입<span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
+            {!localStorage.getItem('access-token') && (
+              <div className="inline-flex flex-wrap justify-center relative rounded-full px-4 py-1 mt-6 text-xs sm:text-sm leading-5 sm:leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                관심 있는 기업의 글을 구독하고 싶으신가요?
+                <a
+                  href="/register"
+                  className="font-semibold text-indigo-600 inline-block ml-2"
+                >
+                  <span className="absolute inset-0" aria-hidden="true"></span>
+                  회원가입<span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            )}
+
             <div className="mt-14 flex items-center justify-center gap-x-6">
               <a
                 href="/main"
