@@ -59,16 +59,19 @@ export default function Register() {
     },
   )
 
-  const { mutate } = useMutation(postAuthJoin, {
-    onSuccess: (data) => {
-      console.log('회원가입 성공')
-      console.log(data)
-      navigate('complete')
+  const { mutate, isLoading: postAuthJoinIsLoading } = useMutation(
+    postAuthJoin,
+    {
+      onSuccess: (data, variables: any) => {
+        localStorage.setItem('email', variables.email)
+        localStorage.setItem('nickname', variables.nickname)
+        navigate('complete')
+      },
+      onError: (error) => {
+        console.log('회원가입 실패', error)
+      },
     },
-    onError: () => {
-      console.log('회원가입 실패')
-    },
-  })
+  )
 
   const {
     register,
@@ -97,13 +100,13 @@ export default function Register() {
       return
     }
 
-    if (checkedSites.length === 0) {
-      setError('siteCodes', {
-        type: 'manual',
-        message: '서비스를 선택해주세요',
-      })
-      return
-    }
+    // if (checkedSites.length === 0) {
+    //   setError('siteCodes', {
+    //     type: 'manual',
+    //     message: '서비스를 선택해주세요',
+    //   })
+    //   return
+    // }
 
     const { passwordConfirm, ...withoutPasswordConfirm } = data
     const selectedSites = sites.filter((site: any) =>
@@ -116,7 +119,11 @@ export default function Register() {
       imageFile: null,
       siteCodes: sitesCode,
     }
-    mutate(formData)
+    mutate(formData, {
+      onSuccess: (data) => {
+        console.log(data)
+      },
+    })
   }
 
   return (
@@ -124,7 +131,7 @@ export default function Register() {
       className={`isolate bg-slate-50 px-6 py-24 sm:py-32 lg:px-8 min-h-screen`}
     >
       <Header />
-      {sitesIsLoading ? (
+      {sitesIsLoading || postAuthJoinIsLoading ? (
         <Loading />
       ) : (
         <>
@@ -186,7 +193,6 @@ export default function Register() {
                           message: '유효한 이메일 주소를 입력해주세요',
                         },
                         onChange: () => {
-                          setEmail(null)
                           setValidEmailMessage('')
                           setIsEmailChecked(false)
                         },
@@ -336,12 +342,12 @@ export default function Register() {
                 구독할 서비스를 선택해주세요!
               </h2>
             </div>
-            {errors.siteCodes && (
+            {/* {errors.siteCodes && (
               <p className="flex items-center mt-2 text-xs leading-5 text-pink-500">
                 <ExclamationCircleIcon className="stroke-pink-500 fill-none inline w-4 mr-1" />
                 {errors.siteCodes.message}
               </p>
-            )}
+            )} */}
 
             <ul className="mt-8 grid sm:grid-cols-3 xs:grid-cols-2 gap-x-4 gap-y-4">
               {sites &&
