@@ -71,7 +71,7 @@ export default function Main() {
     // slice 첫번째 인자값
     // 더보기 사용할 경우 : 1
     // 페이지네이션 사용할 경우 : indexOfFirstPost
-    setCurrentPosts(allPosts.slice(1, indexOfLastPost))
+    setCurrentPosts(allPosts.slice(0, indexOfLastPost))
 
     setPageIndexArray(
       Array.from(
