@@ -1,10 +1,11 @@
 import axios from 'axios'
 
 //TODO: 환경변수로 변경하기
-// const BASE_URL = 'http://3.239.26.220:8080/dailyb'
+const BASE_URL = 'http://3.239.26.220:8080/dailyb'
 
 export const customAxios = axios.create({
-  baseURL: '/dailyb',
+  // baseURL: '/dailyb',
+  baseURL: BASE_URL,
   timeout: 60000,
   // withCredentials: true,
 })
