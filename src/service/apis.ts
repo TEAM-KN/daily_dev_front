@@ -37,7 +37,7 @@ export const getAuthIsCheck = async (email: string): Promise<any> => {
 }
 
 // 로그인
-export const getAuthLogin = async (userInfo: object): Promise<any> => {
-  const { data } = await customAxios.post(`/auth/login`, userInfo)
+export const getAuthLogin = async (loginInfo: object): Promise<any> => {
+  const { data } = await customAxios.post(`/auth/login`, loginInfo)
   return data
 }

@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from '../../../assets/images/dd_logo.svg'
 import Header from '../../../components/Header'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { useLogin } from '../../../hook/useLogin'
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
+
+type LoginInfo = {
+  email: string
+  password: string
+}
 
 export default function Login() {
+  const { login, isLoading, errorMessage, setErrorMessage } = useLogin()
+  const { register, handleSubmit } = useForm<LoginInfo>()
+
+  const onSubmit: SubmitHandler<LoginInfo> = (data) => {
+    login(data)
+  }
+
   return (
     <div className="bg-slate-50 min-h-screen flex">
       <Header />
@@ -14,7 +29,7 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-md px-6 py-12 shadow-lg rounded-lg bg-white">
-          <form className="space-y-6" action="#" method="POST">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -24,6 +39,12 @@ export default function Login() {
               </label>
               <div className="mt-2">
                 <input
+                  {...register('email', {
+                    required: true,
+                    onChange: () => {
+                      setErrorMessage('')
+                    },
+                  })}
                   id="email"
                   name="email"
                   type="email"
@@ -45,6 +66,12 @@ export default function Login() {
               </div>
               <div className="mt-2">
                 <input
+                  {...register('password', {
+                    required: true,
+                    onChange: () => {
+                      setErrorMessage('')
+                    },
+                  })}
                   id="password"
                   name="password"
                   type="password"
@@ -54,13 +81,31 @@ export default function Login() {
                 />
               </div>
             </div>
+
+            {errorMessage && (
+              <p className="flex items-center mt-2 text-xs leading-5 text-pink-500">
+                <ExclamationCircleIcon className="stroke-pink-500 fill-none inline w-4 mr-1" />
+                {errorMessage}
+              </p>
+            )}
+
             <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                로그인
-              </button>
+              {isLoading ? (
+                <button className="relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  로그인
+                  <span className="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
+                  </span>
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  로그인
+                </button>
+              )}
             </div>
           </form>
         </div>
