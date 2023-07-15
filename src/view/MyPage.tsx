@@ -5,8 +5,10 @@ import {
   PencilIcon,
   PhotoIcon,
 } from '@heroicons/react/24/solid'
+import { useLogout } from '../hook/useLogout'
 
 export default function MyPage() {
+  const { logout } = useLogout()
   return (
     <main className={`bg-white px-6 py-24 sm:py-32 lg:px-8`}>
       <Header />
@@ -182,12 +184,12 @@ export default function MyPage() {
             </form>
           </section>
           <section className="mt-20 m-auto text-center">
-            <a
-              href="#"
+            <button
+              onClick={logout}
               className="m-auto w-full sm:w-56 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               로그아웃
-            </a>
+            </button>
             <button
               type="button"
               className="mt-6 text-gray-500 hover:text-gray-600"
