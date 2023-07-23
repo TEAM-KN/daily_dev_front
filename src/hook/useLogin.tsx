@@ -11,7 +11,6 @@ export const useLogin = () => {
   const navigate = useNavigate()
 
   const [userInfo, setUserInfo] = useRecoilState(userInfoState)
-  // console.log('test', userInfo)
 
   // 로그인 API
   const { mutate, isLoading } = useMutation(getAuthLogin)
@@ -19,8 +18,6 @@ export const useLogin = () => {
   const { refetch } = useQuery(['userInfo', email], () => getUserInfo(email), {
     enabled: false,
     onSuccess: (data) => {
-      // localStorage.setItem('access-token', 'test token')
-
       setUserInfo({
         email: data.email,
         nickname: data.nickname,
