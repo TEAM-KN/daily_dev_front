@@ -1,4 +1,6 @@
 import { atom } from 'recoil'
+import { recoilPersist } from 'recoil-persist'
+const { persistAtom } = recoilPersist()
 
 type userInfoType = {
   email: string
@@ -6,9 +8,10 @@ type userInfoType = {
 }
 
 export const userInfoState = atom<userInfoType>({
-  key: 'userInfoState',
+  key: 'userInfo',
   default: {
     email: '',
     nickname: '',
   },
+  effects_UNSTABLE: [persistAtom],
 })

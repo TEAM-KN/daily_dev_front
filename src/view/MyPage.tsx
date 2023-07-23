@@ -14,10 +14,6 @@ export default function MyPage() {
 
   const { logout } = useLogout()
 
-  useEffect(() => {
-    console.log(userInfo)
-  }, [userInfo])
-
   return (
     <main className={`bg-white px-6 py-24 sm:py-32 lg:px-8`}>
       <Header />
