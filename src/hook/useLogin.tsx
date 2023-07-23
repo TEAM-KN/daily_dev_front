@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { getAuthLogin, getUserInfo } from '../service/apis'
-import { useRecoilState } from 'recoil'
 import { userInfoState } from '../recoil/userInfo'
+import { useSetRecoilState } from 'recoil'
 
 export const useLogin = () => {
   const [email, setEmail] = useState<string>('')
   const [errorMessage, setErrorMessage] = useState<string>('')
   const navigate = useNavigate()
 
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState)
+  const setUserInfo = useSetRecoilState(userInfoState)
 
   // 로그인 API
   const { mutate, isLoading } = useMutation(getAuthLogin)
@@ -25,16 +25,17 @@ export const useLogin = () => {
         nickname: data.nickname,
       })
 
-      navigate('/mypage')
+      setTimeout(() => {
+        navigate('/mypage')
+      })
     },
   })
 
   useEffect(() => {
-    console.log(userInfo)
     if (email) {
       refetch()
     }
-  }, [email, userInfo])
+  }, [email])
 
   const login = (data: any) => {
     mutate(data, {
