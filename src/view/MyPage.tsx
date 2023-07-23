@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header'
 import {
   UserCircleIcon,
@@ -13,6 +13,10 @@ export default function MyPage() {
   const userInfo = useRecoilValue(userInfoState)
 
   const { logout } = useLogout()
+
+  useEffect(() => {
+    console.log(userInfo)
+  }, [userInfo])
 
   return (
     <main className={`bg-white px-6 py-24 sm:py-32 lg:px-8`}>

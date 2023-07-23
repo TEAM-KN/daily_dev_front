@@ -18,20 +18,23 @@ export const useLogin = () => {
   const { refetch } = useQuery(['userInfo', email], () => getUserInfo(email), {
     enabled: false,
     onSuccess: (data) => {
+      localStorage.setItem('access-token', 'test token')
+
       setUserInfo({
         email: data.email,
         nickname: data.nickname,
       })
 
-      navigate('/main')
+      navigate('/mypage')
     },
   })
 
   useEffect(() => {
+    console.log(userInfo)
     if (email) {
       refetch()
     }
-  }, [email])
+  }, [email, userInfo])
 
   const login = (data: any) => {
     mutate(data, {
