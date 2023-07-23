@@ -6,9 +6,14 @@ import {
   PhotoIcon,
 } from '@heroicons/react/24/solid'
 import { useLogout } from '../hook/useLogout'
+import { userInfoState } from '../recoil/userInfo'
+import { useRecoilValue } from 'recoil'
 
 export default function MyPage() {
+  const userInfo = useRecoilValue(userInfoState)
+
   const { logout } = useLogout()
+
   return (
     <main className={`bg-white px-6 py-24 sm:py-32 lg:px-8`}>
       <Header />
@@ -27,11 +32,9 @@ export default function MyPage() {
                 />
                 <div className="ml-2 sm:ml-4">
                   <h3 className="text-2xl font-bold tracking-tight text-gray-900">
-                    {localStorage.getItem('nickname')}
+                    {userInfo.nickname}
                   </h3>
-                  <p className="text-base text-gray-700">
-                    {localStorage.getItem('email')}
-                  </p>
+                  <p className="text-base text-gray-700">{userInfo.email}</p>
                 </div>
               </div>
               <div>
