@@ -1,7 +1,7 @@
 # Daily Dev
 
 IT 유명 기술 블로그의 글과 기술 관련 뉴스를 매일 한번씩 수집하여 한 곳에서 볼 수 있는 서비스입니다.  
-회원가입하고 관심 있는 IT 기업을 선택하면 관련 글을 메일로 받아 볼 수 있습니다.
+회원가입을 하고 관심 있는 IT 기업을 선택하면 관련 글을 메일로 받아 볼 수 있습니다.
 
 #### URL
 
@@ -21,6 +21,7 @@ http://daily-dev-news.com
 
 - React, TypeScript
 - React-Query
+- Recoil
 - TailwindCSS
 - Prettier
 
