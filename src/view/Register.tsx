@@ -345,6 +345,9 @@ export default function Register() {
                 <h2 className="text-xl font-semibold leading-7 text-gray-900">
                   구독할 서비스를 선택해주세요!
                 </h2>
+                <p className="mt-1 text-sm text-gray-400">
+                  선택하신 서비스의 글을 메일로 보내드릴게요
+                </p>
               </div>
               {/* {errors.siteCodes && (
               <p className="flex items-center mt-2 text-xs leading-5 text-pink-500">
