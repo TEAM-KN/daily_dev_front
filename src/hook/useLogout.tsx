@@ -1,15 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useResetRecoilState } from 'recoil'
-import { userInfoState } from '../recoil/userInfo'
+import { useSetUserInfo } from './useSetUserInfo'
 
 export const useLogout = () => {
+  const { removeUserInfo } = useSetUserInfo()
   const navigate = useNavigate()
-  const resetUserInfo = useResetRecoilState(userInfoState)
 
   const logout = () => {
-    localStorage.removeItem('access-token')
-    resetUserInfo()
+    removeUserInfo()
 
     setTimeout(() => {
       navigate('/')

@@ -11,7 +11,7 @@ import Header from '../components/Header'
 import { useMutation, useQuery } from 'react-query'
 import { getSites, getAuthIsCheck, postAuthJoin } from '../service/apis'
 import Loading from '../components/Loading'
-import { ConsoleSqlOutlined } from '@ant-design/icons'
+import { useSetUserInfo } from '../hook/useSetUserInfo'
 
 type UserInfo = {
   email: string
@@ -33,12 +33,14 @@ type sites = {
 
 export default function Register() {
   const navigate = useNavigate()
+  const { setUserInfo } = useSetUserInfo()
   const [checkedSites, setCheckedSite] = useState<string[]>([])
   const [isEmailChecked, setIsEmailChecked] = useState(false)
   const [validEmailMessage, setValidEmailMessage] = useState<string>('')
 
   const { data: sites, isLoading: sitesIsLoading } = useQuery('sites', getSites)
 
+  // 이메일 중복체크
   const { isLoading: isCheckLoading, refetch: isCheckRefetch } = useQuery(
     ['isCheckEmail', ''],
     () => getAuthIsCheck(getValues('email')),
@@ -59,13 +61,16 @@ export default function Register() {
     },
   )
 
+  // 회원가입
   const { mutate, isLoading: postAuthJoinIsLoading } = useMutation(
     postAuthJoin,
     {
       onSuccess: (data, variables: any) => {
-        localStorage.setItem('email', variables.email)
-        localStorage.setItem('nickname', variables.nickname)
-        navigate('complete')
+        setUserInfo(variables.email, variables.nickname, 'test-token')
+
+        setTimeout(() => {
+          navigate('complete')
+        }, 0)
       },
       onError: (error) => {
         console.log('회원가입 실패', error)
