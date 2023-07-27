@@ -1,7 +1,11 @@
 import React from 'react'
+import { useRecoilValue } from 'recoil'
 import Header from '../components/Header'
+import { userInfoState } from '../recoil/userInfo'
 
 export default function RegisterComplete() {
+  const useInfo = useRecoilValue(userInfoState)
+
   return (
     <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
       <Header />
@@ -10,14 +14,12 @@ export default function RegisterComplete() {
           WELCOME!
         </h1>
         <p className="mt-6 text-md sm:text-lg text-gray-600 break-keep leading-7 sm:leading-8">
-          {localStorage.getItem('nickname')}님, 데일리데브 회원가입을
+          <strong>{useInfo.nickname}</strong>님, 데일리데브 회원가입을
           축하합니다.
           <br />
           선택하신 구독 서비스를{' '}
-          <span className="text-indigo-600">
-            {localStorage.getItem('email')}
-          </span>
-          로 보내드리겠습니다.
+          <span className="text-indigo-600">{useInfo.email}</span>로
+          보내드리겠습니다.
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <a

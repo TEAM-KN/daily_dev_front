@@ -11,7 +11,7 @@ import Header from '../components/Header'
 import { useMutation, useQuery } from 'react-query'
 import { getSites, getAuthIsCheck, postAuthJoin } from '../service/apis'
 import Loading from '../components/Loading'
-import { ConsoleSqlOutlined } from '@ant-design/icons'
+import { useSetUserInfo } from '../hook/useSetUserInfo'
 
 type UserInfo = {
   email: string
@@ -33,12 +33,14 @@ type sites = {
 
 export default function Register() {
   const navigate = useNavigate()
+  const { setUserInfo } = useSetUserInfo()
   const [checkedSites, setCheckedSite] = useState<string[]>([])
   const [isEmailChecked, setIsEmailChecked] = useState(false)
   const [validEmailMessage, setValidEmailMessage] = useState<string>('')
 
   const { data: sites, isLoading: sitesIsLoading } = useQuery('sites', getSites)
 
+  // 이메일 중복체크
   const { isLoading: isCheckLoading, refetch: isCheckRefetch } = useQuery(
     ['isCheckEmail', ''],
     () => getAuthIsCheck(getValues('email')),
@@ -59,13 +61,16 @@ export default function Register() {
     },
   )
 
+  // 회원가입
   const { mutate, isLoading: postAuthJoinIsLoading } = useMutation(
     postAuthJoin,
     {
       onSuccess: (data, variables: any) => {
-        localStorage.setItem('email', variables.email)
-        localStorage.setItem('nickname', variables.nickname)
-        navigate('complete')
+        setUserInfo(variables.email, variables.nickname, 'test-token')
+
+        setTimeout(() => {
+          navigate('complete')
+        }, 0)
       },
       onError: (error) => {
         console.log('회원가입 실패', error)
@@ -340,6 +345,9 @@ export default function Register() {
                 <h2 className="text-xl font-semibold leading-7 text-gray-900">
                   구독할 서비스를 선택해주세요!
                 </h2>
+                <p className="mt-1 text-sm text-gray-400">
+                  선택하신 서비스의 글을 메일로 보내드릴게요
+                </p>
               </div>
               {/* {errors.siteCodes && (
               <p className="flex items-center mt-2 text-xs leading-5 text-pink-500">
