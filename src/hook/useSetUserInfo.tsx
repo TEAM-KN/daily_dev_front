@@ -7,9 +7,7 @@ export const useSetUserInfo = () => {
   const resetUserInfo = useResetRecoilState(userInfoState)
 
   // 회원정보 저장
-  const setUserInfo = (email: string, nickname: string, token: string) => {
-    localStorage.setItem('access-token', token)
-
+  const setUserInfo = (email: string, nickname: string) => {
     setUserInfoState({
       email: email,
       nickname: nickname,
@@ -18,7 +16,7 @@ export const useSetUserInfo = () => {
 
   // 회원정보 삭제
   const removeUserInfo = () => {
-    localStorage.removeItem('access-token')
+    localStorage.clear()
     resetUserInfo()
   }
 
