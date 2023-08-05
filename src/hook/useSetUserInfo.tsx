@@ -14,11 +14,5 @@ export const useSetUserInfo = () => {
     })
   }
 
-  // 회원정보 삭제
-  const removeUserInfo = () => {
-    localStorage.clear()
-    resetUserInfo()
-  }
-
-  return { setUserInfo, removeUserInfo }
+  return { setUserInfo }
 }

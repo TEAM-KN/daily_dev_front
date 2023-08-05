@@ -45,3 +45,9 @@ export const getUserInfo = async (email: string): Promise<any> => {
   const { data } = await customAxios.get(`/user?email=${email}`)
   return data
 }
+
+// 회원탈퇴
+export const deleteUser = async (email: string): Promise<any> => {
+  const { data } = await customAxios.delete(`/user/leave?email=${email}`)
+  return data
+}

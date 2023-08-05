@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Header from '../components/Header'
 import {
   UserCircleIcon,
@@ -8,11 +8,21 @@ import {
 import { useLogout } from '../hook/useLogout'
 import { userInfoState } from '../recoil/userInfo'
 import { useRecoilValue } from 'recoil'
+import { useMutation } from 'react-query'
+import { deleteUser } from '../service/apis'
+import { useNavigate } from 'react-router-dom'
 
 export default function MyPage() {
+  const navigate = useNavigate()
   const userInfo = useRecoilValue(userInfoState)
-
   const { logout } = useLogout()
+
+  const { mutate } = useMutation(deleteUser, {
+    onSuccess: () => {
+      localStorage.clear()
+      navigate('/')
+    },
+  })
 
   return (
     <main className={`bg-white px-6 py-24 sm:py-32 lg:px-8`}>
@@ -194,6 +204,7 @@ export default function MyPage() {
               로그아웃
             </button>
             <button
+              onClick={() => mutate(userInfo.email)}
               type="button"
               className="mt-6 text-gray-500 hover:text-gray-600"
             >
