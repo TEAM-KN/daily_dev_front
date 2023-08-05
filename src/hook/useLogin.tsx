@@ -17,7 +17,7 @@ export const useLogin = () => {
   const { refetch } = useQuery(['userInfo', email], () => getUserInfo(email), {
     enabled: false,
     onSuccess: (data) => {
-      setUserInfo(data.email, data.nickname, 'test-token')
+      setUserInfo(data.email, data.nickname)
 
       setTimeout(() => {
         navigate('/mypage')
