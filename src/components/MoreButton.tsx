@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 
-type MoreButtonProps = {
+type TMoreButton = {
   currentPageIndex: any
   pageIndexArray: any
   setCurrentPageIndex: any
@@ -11,7 +11,7 @@ export default function MoreButton({
   currentPageIndex,
   pageIndexArray,
   setCurrentPageIndex,
-}: MoreButtonProps) {
+}: TMoreButton) {
   const viewMoreContent = () => {
     if (currentPageIndex < pageIndexArray.length) {
       setCurrentPageIndex((prevPage: any) => prevPage + 1)

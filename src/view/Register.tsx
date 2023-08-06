@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-
 import {
   PhotoIcon,
   ExclamationCircleIcon,
@@ -12,24 +11,7 @@ import { useMutation, useQuery } from 'react-query'
 import { getSites, getAuthIsCheck, postAuthJoin } from '../service/apis'
 import Loading from '../components/Loading'
 import { useSetUserInfo } from '../hooks/useSetUserInfo'
-
-type UserInfo = {
-  email: string
-  nickname: string
-  password: string
-  passwordConfirm: string
-  imageUrl: null
-  imageFile: null
-  siteCodes: string[]
-}
-
-type sites = {
-  siteCode: string
-  siteName: string
-  siteDesc: string
-  createDate: string
-  updateDate: string
-}
+import { TUserInfo, TSites } from '../types/commonTypes'
 
 export default function Register() {
   const navigate = useNavigate()
@@ -81,7 +63,7 @@ export default function Register() {
     clearErrors,
     trigger,
     formState: { errors },
-  } = useForm<UserInfo>()
+  } = useForm<TUserInfo>()
 
   const handleEmailCheck = async () => {
     const isValid = await trigger('email')
@@ -91,7 +73,7 @@ export default function Register() {
     }
   }
 
-  const onSubmit: SubmitHandler<UserInfo> = (data) => {
+  const onSubmit: SubmitHandler<TUserInfo> = (data) => {
     if (!isEmailChecked) {
       setError('email', {
         type: 'manual',
@@ -341,7 +323,7 @@ export default function Register() {
 
               <ul className="mt-8 grid sm:grid-cols-3 xs:grid-cols-2 gap-x-4 gap-y-4">
                 {sites &&
-                  sites.map((site: sites, index: number) => (
+                  sites.map((site: TSites, index: number) => (
                     <li key={site.siteCode}>
                       <input
                         {...register('siteCodes')}

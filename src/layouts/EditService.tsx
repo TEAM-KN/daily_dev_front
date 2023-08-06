@@ -2,14 +2,8 @@ import React, { useState } from 'react'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { useQuery } from 'react-query'
 import { getSites } from '../service/apis'
+import { TSites } from '../types/commonTypes'
 
-type sites = {
-  siteCode: string
-  siteName: string
-  siteDesc: string
-  createDate: string
-  updateDate: string
-}
 export default function EditService() {
   const [checkedSites, setCheckedSite] = useState<string[]>([])
   const { data: sites, isLoading: sitesIsLoading } = useQuery('sites', getSites)
@@ -17,7 +11,7 @@ export default function EditService() {
   return (
     <ul className="grid sm:grid-cols-3 xs:grid-cols-2 gap-x-4 gap-y-4">
       {sites &&
-        sites.map((site: sites, index: number) => (
+        sites.map((site: TSites, index: number) => (
           <li key={site.siteCode}>
             <input
               // {...register('siteCodes')}

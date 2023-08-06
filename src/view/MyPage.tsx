@@ -13,7 +13,7 @@ import { useRecoilValue } from 'recoil'
 import { useMutation } from 'react-query'
 import { deleteUser } from '../service/apis'
 import { useNavigate } from 'react-router-dom'
-import EditService from '../layouts/editService'
+import EditService from '../layouts/EditService'
 import SavedService from '../layouts/SavedService'
 
 export default function MyPage() {

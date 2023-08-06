@@ -1,20 +1,16 @@
 import React, { useState } from 'react'
 import Logo from '../../../assets/images/dd_logo.svg'
-import Header from '../../../components/Header'
+import Header from '../components/Header'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useLogin } from '../../../hooks/useLogin'
+import { useLogin } from '../hooks/useLogin'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
-
-type LoginInfo = {
-  email: string
-  password: string
-}
+import { TLoginInfo } from '../types/commonTypes'
 
 export default function Login() {
   const { login, isLoading, errorMessage, setErrorMessage } = useLogin()
-  const { register, handleSubmit } = useForm<LoginInfo>()
+  const { register, handleSubmit } = useForm<TLoginInfo>()
 
-  const onSubmit: SubmitHandler<LoginInfo> = (data) => {
+  const onSubmit: SubmitHandler<TLoginInfo> = (data) => {
     login(data)
   }
 
