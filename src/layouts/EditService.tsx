@@ -3,7 +3,7 @@ import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { useQuery } from 'react-query'
 import { getSites } from '../service/apis'
 import { TSites } from '../types/commonTypes'
-import Loading from '../components/loading/Loading'
+import Loading from '../components/Loading'
 
 export default function EditService() {
   const [checkedSites, setCheckedSite] = useState<string[]>([])

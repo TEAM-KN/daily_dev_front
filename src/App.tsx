@@ -8,7 +8,7 @@ import Routes from './router'
 import { QueryClient, QueryClientProvider } from 'react-query'
 // recoil
 import { RecoilRoot } from 'recoil'
-import Loading from './components/loading/Loading'
+import Loading from './components/Loading'
 
 const queryClient = new QueryClient()
 

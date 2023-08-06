@@ -9,7 +9,7 @@ import {
 import Header from '../layouts/Header'
 import { useMutation, useQuery } from 'react-query'
 import { getSites, getAuthIsCheck, postAuthJoin } from '../service/apis'
-import Loading from '../components/loading/Loading'
+import Loading from '../components/Loading'
 import { useSetUserInfo } from '../hooks/useSetUserInfo'
 import { TUserInfo, TSites } from '../types/commonTypes'
 

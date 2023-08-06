@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useLogin } from '../hooks/useLogin'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { TLoginInfo } from '../types/commonTypes'
-import Loading from '../components/loading/Loading'
+import Loading from '../components/Loading'
 
 export default function Login() {
   const { login, isLoading, errorMessage, setErrorMessage } = useLogin()

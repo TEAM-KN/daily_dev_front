@@ -1,8 +1,8 @@
 import React from 'react'
 import { NewspaperIcon } from '@heroicons/react/24/solid'
-import SiteLabel from '../labels/SiteLabel'
+import SiteLabel from './labels/SiteLabel'
 
-type TPostList = {
+type TPostItem = {
   currentPosts: TContent[]
 }
 
@@ -17,7 +17,7 @@ type TContent = {
   description: string
 }
 
-function NoPostList() {
+function NoPostItem() {
   return (
     <div className="text-center py-36">
       <NewspaperIcon className="inline w-10 text-gray-300" />
@@ -29,10 +29,10 @@ function NoPostList() {
   )
 }
 
-export default function PostList({ currentPosts }: TPostList) {
+export default function PostItem({ currentPosts }: TPostItem) {
   return (
     <>
-      {currentPosts.length < 1 && <NoPostList />}
+      {currentPosts.length < 1 && <NoPostItem />}
       {currentPosts.map((content: TContent) => (
         <li key={content.contentId} className="border-t first:border-0">
           <a
