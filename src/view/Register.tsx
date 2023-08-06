@@ -11,7 +11,7 @@ import Header from '../components/Header'
 import { useMutation, useQuery } from 'react-query'
 import { getSites, getAuthIsCheck, postAuthJoin } from '../service/apis'
 import Loading from '../components/Loading'
-import { useSetUserInfo } from '../hook/useSetUserInfo'
+import { useSetUserInfo } from '../hooks/useSetUserInfo'
 
 type UserInfo = {
   email: string

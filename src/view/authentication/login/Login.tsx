@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Logo from '../../../assets/images/dd_logo.svg'
 import Header from '../../../components/Header'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useLogin } from '../../../hook/useLogin'
+import { useLogin } from '../../../hooks/useLogin'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 
 type LoginInfo = {
