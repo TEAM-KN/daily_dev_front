@@ -1,11 +1,11 @@
 import React from 'react'
 import { NewspaperIcon } from '@heroicons/react/24/solid'
 
-type PostListProps = {
-  currentPosts: Content[]
+type TPostList = {
+  currentPosts: TContent[]
 }
 
-type Content = {
+type TContent = {
   contentId: number
   link: string
   siteName: string
@@ -28,7 +28,7 @@ function NoPostList() {
   )
 }
 
-export default function PostList({ currentPosts }: PostListProps) {
+export default function PostList({ currentPosts }: TPostList) {
   const color = (siteName: string) => {
     const colorMap: { [key: string]: string } = {
       NAVER: 'bg-green-50 text-green-700',
@@ -43,7 +43,7 @@ export default function PostList({ currentPosts }: PostListProps) {
   return (
     <>
       {currentPosts.length < 1 && <NoPostList />}
-      {currentPosts.map((content: Content) => (
+      {currentPosts.map((content: TContent) => (
         <li key={content.contentId} className="border-t first:border-0">
           <a
             href={content.link}

@@ -1,17 +1,14 @@
 import React from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 
-// 인덱스 버튼
-type IndexButtonProps = {
+type TIndexButton = {
   onClick: () => void
   indexNumber: number | string
   currentPageIndex: number
 }
-function IndexButton({
-  onClick,
-  indexNumber,
-  currentPageIndex,
-}: IndexButtonProps) {
+
+// 인덱스 버튼
+function IndexButton({ onClick, indexNumber, currentPageIndex }: TIndexButton) {
   return (
     <>
       {indexNumber === currentPageIndex ? (

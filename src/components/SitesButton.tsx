@@ -1,6 +1,6 @@
 import React from 'react'
 
-type SitesButtonProps = {
+type TSitesButton = {
   sites: []
   currentSiteCode: string
   setCurrentSiteCode: React.Dispatch<React.SetStateAction<string>>
@@ -12,7 +12,7 @@ export default function SitesButton({
   currentSiteCode,
   setCurrentSiteCode,
   filterPosts,
-}: SitesButtonProps) {
+}: TSitesButton) {
   const changeSite = (siteCode: string) => {
     setCurrentSiteCode(siteCode)
     filterPosts(siteCode)

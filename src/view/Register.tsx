@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-
 import {
   PhotoIcon,
   ExclamationCircleIcon,
@@ -11,25 +10,8 @@ import Header from '../components/Header'
 import { useMutation, useQuery } from 'react-query'
 import { getSites, getAuthIsCheck, postAuthJoin } from '../service/apis'
 import Loading from '../components/Loading'
-import { useSetUserInfo } from '../hook/useSetUserInfo'
-
-type UserInfo = {
-  email: string
-  nickname: string
-  password: string
-  passwordConfirm: string
-  imageUrl: null
-  imageFile: null
-  siteCodes: string[]
-}
-
-type sites = {
-  siteCode: string
-  siteName: string
-  siteDesc: string
-  createDate: string
-  updateDate: string
-}
+import { useSetUserInfo } from '../hooks/useSetUserInfo'
+import { TUserInfo, TSites } from '../types/commonTypes'
 
 export default function Register() {
   const navigate = useNavigate()
@@ -62,21 +44,16 @@ export default function Register() {
   )
 
   // 회원가입
-  const { mutate, isLoading: postAuthJoinIsLoading } = useMutation(
-    postAuthJoin,
-    {
+  const { mutate: mutatePostAuthJoin, isLoading: postAuthJoinIsLoading } =
+    useMutation(postAuthJoin, {
       onSuccess: (data, variables: any) => {
-        setUserInfo(variables.email, variables.nickname, 'test-token')
+        setUserInfo(variables.email, variables.nickname)
 
         setTimeout(() => {
           navigate('complete')
         }, 0)
       },
-      onError: (error) => {
-        console.log('회원가입 실패', error)
-      },
-    },
-  )
+    })
 
   const {
     register,
@@ -86,7 +63,7 @@ export default function Register() {
     clearErrors,
     trigger,
     formState: { errors },
-  } = useForm<UserInfo>()
+  } = useForm<TUserInfo>()
 
   const handleEmailCheck = async () => {
     const isValid = await trigger('email')
@@ -96,7 +73,7 @@ export default function Register() {
     }
   }
 
-  const onSubmit: SubmitHandler<UserInfo> = (data) => {
+  const onSubmit: SubmitHandler<TUserInfo> = (data) => {
     if (!isEmailChecked) {
       setError('email', {
         type: 'manual',
@@ -104,14 +81,6 @@ export default function Register() {
       })
       return
     }
-
-    // if (checkedSites.length === 0) {
-    //   setError('siteCodes', {
-    //     type: 'manual',
-    //     message: '서비스를 선택해주세요',
-    //   })
-    //   return
-    // }
 
     const { passwordConfirm, ...withoutPasswordConfirm } = data
     const selectedSites = sites.filter((site: any) =>
@@ -124,11 +93,7 @@ export default function Register() {
       imageFile: null,
       siteCodes: sitesCode,
     }
-    mutate(formData, {
-      onSuccess: (data) => {
-        console.log(data)
-      },
-    })
+    mutatePostAuthJoin(formData)
   }
 
   return (
@@ -358,7 +323,7 @@ export default function Register() {
 
               <ul className="mt-8 grid sm:grid-cols-3 xs:grid-cols-2 gap-x-4 gap-y-4">
                 {sites &&
-                  sites.map((site: sites, index: number) => (
+                  sites.map((site: TSites, index: number) => (
                     <li key={site.siteCode}>
                       <input
                         {...register('siteCodes')}

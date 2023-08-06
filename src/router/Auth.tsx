@@ -1,15 +1,11 @@
-import { RouteObject } from 'react-router-dom'
-import { lazy } from 'react'
+import { lazy, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { TRouterItem } from '../types/commonTypes'
 
-const Login = lazy(() => import('../view/authentication/login/Login'))
 const MyPage = lazy(() => import('../view/MyPage'))
 const RegisterComplete = lazy(() => import('../view/RegisterComplete'))
 
-const AuthRoutes: RouteObject[] = [
-  {
-    path: '/login',
-    element: <Login />,
-  },
+const AuthRoutesInfo: TRouterItem[] = [
   {
     path: '/mypage',
     element: <MyPage />,
@@ -19,5 +15,28 @@ const AuthRoutes: RouteObject[] = [
     element: <RegisterComplete />,
   },
 ]
+
+// 로그인 여부 확인
+const WithLogin = ({ children }: { children: React.ReactNode }) => {
+  const navigate = useNavigate()
+  const isLoggedIn = localStorage.getItem('access-token')
+  if (!isLoggedIn) {
+    useEffect(() => {
+      navigate('/login')
+    })
+    return null
+  } else {
+    return <>{children}</>
+  }
+}
+
+const AuthRoutes = () => {
+  return AuthRoutesInfo.map((routerInfo: TRouterItem) => {
+    return {
+      path: routerInfo.path,
+      element: <WithLogin>{routerInfo.element}</WithLogin>,
+    }
+  })
+}
 
 export default AuthRoutes
