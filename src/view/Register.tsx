@@ -62,21 +62,16 @@ export default function Register() {
   )
 
   // 회원가입
-  const { mutate, isLoading: postAuthJoinIsLoading } = useMutation(
-    postAuthJoin,
-    {
+  const { mutate: mutatePostAuthJoin, isLoading: postAuthJoinIsLoading } =
+    useMutation(postAuthJoin, {
       onSuccess: (data, variables: any) => {
-        setUserInfo(variables.email, variables.nickname, 'test-token')
+        setUserInfo(variables.email, variables.nickname)
 
         setTimeout(() => {
           navigate('complete')
         }, 0)
       },
-      onError: (error) => {
-        console.log('회원가입 실패', error)
-      },
-    },
-  )
+    })
 
   const {
     register,
@@ -105,14 +100,6 @@ export default function Register() {
       return
     }
 
-    // if (checkedSites.length === 0) {
-    //   setError('siteCodes', {
-    //     type: 'manual',
-    //     message: '서비스를 선택해주세요',
-    //   })
-    //   return
-    // }
-
     const { passwordConfirm, ...withoutPasswordConfirm } = data
     const selectedSites = sites.filter((site: any) =>
       checkedSites.includes(site.siteCode),
@@ -124,11 +111,7 @@ export default function Register() {
       imageFile: null,
       siteCodes: sitesCode,
     }
-    mutate(formData, {
-      onSuccess: (data) => {
-        console.log(data)
-      },
-    })
+    mutatePostAuthJoin(formData)
   }
 
   return (
