@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header'
+import Header from '../layouts/Header'
 import { getSites, getContents } from '../service/apis'
 import { useQuery } from 'react-query'
-import Loading from '../components/Loading'
-// import Pagination from '../components/Pagination'
-import SitesButton from '../components/SitesButton'
-import PostList from '../components/PostList'
-import ScrollTopButton from '../components/ScrollTopButton'
-import MoreButton from '../components/MoreButton'
+import Loading from '../components/loading/Loading'
+// import Pagination from '../components/pagination/Pagination'
+import SitesButton from '../layouts/SitesTabList'
+import PostList from '../components/lists.jsx/PostList'
+import ScrollTopButton from '../components/buttons.jsx/ScrollTopButton'
+import MoreButton from '../components/buttons.jsx/MoreButton'
 
 export default function Main() {
   const postsPerPage: number = 15 // 한번에 보여줄 글 수

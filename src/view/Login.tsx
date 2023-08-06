@@ -1,10 +1,10 @@
 import React from 'react'
-import Header from '../components/Header'
+import Header from '../layouts/Header'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useLogin } from '../hooks/useLogin'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { TLoginInfo } from '../types/commonTypes'
-import Loading from '../components/Loading'
+import Loading from '../components/loading/Loading'
 
 export default function Login() {
   const { login, isLoading, errorMessage, setErrorMessage } = useLogin()

@@ -6,10 +6,10 @@ import {
   ExclamationCircleIcon,
   CheckCircleIcon,
 } from '@heroicons/react/24/solid'
-import Header from '../components/Header'
+import Header from '../layouts/Header'
 import { useMutation, useQuery } from 'react-query'
 import { getSites, getAuthIsCheck, postAuthJoin } from '../service/apis'
-import Loading from '../components/Loading'
+import Loading from '../components/loading/Loading'
 import { useSetUserInfo } from '../hooks/useSetUserInfo'
 import { TUserInfo, TSites } from '../types/commonTypes'
 
