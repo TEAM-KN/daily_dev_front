@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
-import Header from '../components/Header'
+import Header from '../layouts/Header'
 import { userInfoState } from '../recoil/userInfo'
 
 export default function RegisterComplete() {

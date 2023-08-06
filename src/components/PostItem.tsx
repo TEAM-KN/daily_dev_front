@@ -1,7 +1,8 @@
 import React from 'react'
 import { NewspaperIcon } from '@heroicons/react/24/solid'
+import SiteLabel from './labels/SiteLabel'
 
-type TPostList = {
+type TPostItem = {
   currentPosts: TContent[]
 }
 
@@ -16,7 +17,7 @@ type TContent = {
   description: string
 }
 
-function NoPostList() {
+function NoPostItem() {
   return (
     <div className="text-center py-36">
       <NewspaperIcon className="inline w-10 text-gray-300" />
@@ -28,21 +29,10 @@ function NoPostList() {
   )
 }
 
-export default function PostList({ currentPosts }: TPostList) {
-  const color = (siteName: string) => {
-    const colorMap: { [key: string]: string } = {
-      NAVER: 'bg-green-50 text-green-700',
-      KAKAO: 'bg-yellow-50 text-yellow-800',
-      DAANGN: 'bg-orange-50 text-orange-600',
-      WOO: 'bg-blue-50 text-blue-700',
-    }
-
-    return colorMap[siteName] || ''
-  }
-
+export default function PostItem({ currentPosts }: TPostItem) {
   return (
     <>
-      {currentPosts.length < 1 && <NoPostList />}
+      {currentPosts.length < 1 && <NoPostItem />}
       {currentPosts.map((content: TContent) => (
         <li key={content.contentId} className="border-t first:border-0">
           <a
@@ -51,13 +41,10 @@ export default function PostList({ currentPosts }: TPostList) {
             className="block sm:py-8 sm:px-6 py-6 px-2 cursor-pointer hover:bg-gray-50 transition duration-200"
           >
             <div className="flex items-center">
-              <strong
-                className={`text-sm sm:text-base rounded-full px-3 py-1.5 font-medium ${color(
-                  content.siteCode,
-                )}`}
-              >
-                {content.siteName}
-              </strong>
+              <SiteLabel
+                siteName={content.siteName}
+                siteCode={content.siteCode}
+              />
               <span className="text-xs sm:text-sm text-gray-400 ml-4">
                 {content.author}
               </span>

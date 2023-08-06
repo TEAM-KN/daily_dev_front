@@ -25,3 +25,8 @@ export type TSites = {
   createDate: string
   updateDate: string
 }
+
+export type TSiteLabel = {
+  siteCode: string
+  siteName: string
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Header from '../components/Header'
+import Header from '../layouts/Header'
 import {
   UserCircleIcon,
   PencilSquareIcon,
@@ -15,6 +15,18 @@ import { deleteUser } from '../service/apis'
 import { useNavigate } from 'react-router-dom'
 import EditService from '../layouts/EditService'
 import SavedService from '../layouts/SavedService'
+
+// Todo: 더미데이터 | 유저정보에서 가져오는 값으로 교체할 예정
+const userSitesData = [
+  {
+    siteName: '네이버',
+    siteCode: 'NAVER',
+  },
+  {
+    siteName: '카카오',
+    siteCode: 'KAKAO',
+  },
+]
 
 export default function MyPage() {
   const navigate = useNavigate()
@@ -111,7 +123,11 @@ export default function MyPage() {
                       구독 중인 서비스
                     </dt>
                     <dd className="text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {!isEditing ? <SavedService /> : <EditService />}
+                      {!isEditing ? (
+                        <SavedService userSitesData={userSitesData} />
+                      ) : (
+                        <EditService />
+                      )}
                     </dd>
                   </div>
                 </dl>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../components/Header'
+import Header from '../layouts/Header'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useLogin } from '../hooks/useLogin'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
