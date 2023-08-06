@@ -43,7 +43,7 @@ export default function PostList({ currentPosts }: TPostList) {
   return (
     <>
       {currentPosts.length < 1 && <NoPostList />}
-      {currentPosts.map((content: Content) => (
+      {currentPosts.map((content: TContent) => (
         <li key={content.contentId} className="border-t first:border-0">
           <a
             href={content.link}

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import Logo from '../../../assets/images/dd_logo.svg'
+import React from 'react'
 import Header from '../components/Header'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useLogin } from '../hooks/useLogin'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { TLoginInfo } from '../types/commonTypes'
+import Loading from '../components/Loading'
 
 export default function Login() {
   const { login, isLoading, errorMessage, setErrorMessage } = useLogin()
@@ -17,6 +17,7 @@ export default function Login() {
   return (
     <div className="bg-slate-50 min-h-screen flex">
       <Header />
+      {isLoading && <Loading />}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -86,22 +87,12 @@ export default function Login() {
             )}
 
             <div>
-              {isLoading ? (
-                <button className="relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                  로그인
-                  <span className="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
-                  </span>
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  로그인
-                </button>
-              )}
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                로그인
+              </button>
             </div>
           </form>
         </div>
