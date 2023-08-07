@@ -4,7 +4,7 @@ import { userInfoState } from '../recoil/userInfo'
 
 export const useSetUserInfo = () => {
   const setUserInfoState = useSetRecoilState(userInfoState)
-  const resetUserInfo = useResetRecoilState(userInfoState)
+  // const resetUserInfo = useResetRecoilState(userInfoState)
 
   // 회원정보 저장
   const setUserInfo = (email: string, nickname: string) => {

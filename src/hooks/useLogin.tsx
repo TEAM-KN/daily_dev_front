@@ -18,10 +18,7 @@ export const useLogin = () => {
     enabled: false,
     onSuccess: (data) => {
       setUserInfo(data.email, data.nickname)
-
-      setTimeout(() => {
-        navigate('/mypage')
-      })
+      navigate('/mypage')
     },
   })
 

@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
-import Header from '../components/Header'
+import Header from '../layouts/Header'
 import { userInfoState } from '../recoil/userInfo'
 
 export default function RegisterComplete() {
@@ -28,9 +29,9 @@ export default function RegisterComplete() {
           >
             시작하기
           </a>
-          <a href="#" className="text-md font-semibold text-gray-900">
+          <Link to="/mypage" className="text-md font-semibold text-gray-900">
             구독 서비스 변경하기 <span aria-hidden="true">&rarr;</span>
-          </a>
+          </Link>
         </div>
       </div>
     </main>
