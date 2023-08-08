@@ -25,13 +25,14 @@ export default function Landing() {
               Daily Dev
             </h1>
             <p className="mt-6 text-md sm:text-lg text-gray-600 break-keep leading-7 sm:leading-8">
-              끊임없이 발전하는 기술, Daily Dev와 함께 최신 트렌드를 따라가세요!{' '}
-              <br className="hidden sm:block" />
-              이곳은 유명 기업들의 기술 관련 글을 모아볼 수 있는 공간입니다.
+              데일리데브는 유명 IT기업의 기술 블로그와 네이버 뉴스를 메일로
+              전달하는 서비스입니다. <br className="hidden sm:block" />
+              관심 있는 기업을 선택하고 매일 아침 10시에 최신 글을 메일로
+              받아보세요.
             </p>
             {!localStorage.getItem('access-token') && (
-              <div className="inline-flex flex-wrap justify-center relative rounded-full px-4 py-1 mt-6 text-xs sm:text-sm leading-5 sm:leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                관심 있는 기업의 글을 구독하고 싶으신가요?
+              <div className="inline-flex flex-wrap justify-center relative rounded-full px-4 py-1 mt-6 text-sm leading-5 sm:leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                구독 서비스를 이용하고 싶으신가요?
                 <a
                   href="/register"
                   className="font-semibold text-indigo-600 inline-block ml-2"
@@ -42,12 +43,12 @@ export default function Landing() {
               </div>
             )}
 
-            <div className="mt-14 flex items-center justify-center gap-x-6">
+            <div className="mt-16 flex items-center justify-center gap-x-6">
               <a
                 href="/main"
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-md font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                시작하기
+                전체 컨텐츠 보기
               </a>
             </div>
           </div>
