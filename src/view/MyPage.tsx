@@ -154,7 +154,7 @@ export default function MyPage() {
               <div className="mt-6 border-t border-gray-100">
                 <dl className="divide-y divide-gray-100">
                   <div className="py-6 grid sm:grid-cols-3 gap-y-3">
-                    <dt className="text-lg sm:text-base mb-2 font-semibold leading-6 text-gray-900">
+                    <dt className="text-md mb-2 font-semibold leading-6 text-gray-900">
                       {!isEditing ? '구독 중인 서비스' : '서비스 목록'}
                     </dt>
                     <dd className="text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
