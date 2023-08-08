@@ -19,7 +19,6 @@ export default function Register() {
   const [checkedSites, setCheckedSite] = useState<string[]>([])
   const [isEmailChecked, setIsEmailChecked] = useState(false)
   const [validEmailMessage, setValidEmailMessage] = useState<string>('')
-
   const { data: sites, isLoading: sitesIsLoading } = useQuery('sites', getSites)
 
   // 이메일 중복체크
@@ -47,7 +46,11 @@ export default function Register() {
   const { mutate: mutatePostAuthJoin, isLoading: postAuthJoinIsLoading } =
     useMutation(postAuthJoin, {
       onSuccess: (data, variables: any) => {
-        setUserInfo(variables.email, variables.nickname)
+        setUserInfo(
+          variables.email,
+          variables.nickname,
+          sites.filter((item: TSites) => checkedSites.includes(item.siteCode)),
+        )
 
         setTimeout(() => {
           navigate('complete')

@@ -29,4 +29,5 @@ export type TSites = {
 export type TSiteLabel = {
   siteCode: string
   siteName: string
+  margin?: string
 }
