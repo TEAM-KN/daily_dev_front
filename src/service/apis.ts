@@ -57,3 +57,9 @@ export const postUserSites = async (formData: object): Promise<any> => {
   const { data } = await customAxios.post(`/user/sites`, formData)
   return data
 }
+
+// 회원 구독 정보 삭제
+export const deleteUserSites = async (email: string): Promise<any> => {
+  const { data } = await customAxios.delete(`/user/sites?email=${email}`)
+  return data
+}
