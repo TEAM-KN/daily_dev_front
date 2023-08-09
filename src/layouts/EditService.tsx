@@ -1,29 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
-import { useQuery } from 'react-query'
-import { getSites } from '../service/apis'
 import { TSites } from '../types/commonTypes'
-import Loading from '../components/Loading'
+import { useRecoilValue } from 'recoil'
+import { userInfoState } from '../recoil/userInfo'
 
-export default function EditService() {
-  const [checkedSites, setCheckedSite] = useState<string[]>([])
-  const { data: sites, isLoading: sitesIsLoading } = useQuery('sites', getSites)
+type TEditService = {
+  sitesData: [TSites]
+  checkedSites: string[]
+  setCheckedSite: React.Dispatch<React.SetStateAction<string[]>>
+}
+
+export default function EditService({
+  sitesData,
+  checkedSites,
+  setCheckedSite,
+}: TEditService) {
+  const { sites: userSites } = useRecoilValue(userInfoState)
+
+  const newCheckedSites = userSites.map((item: TSites) => item.siteCode)
+
+  useEffect(() => {
+    setCheckedSite(newCheckedSites)
+  }, [sitesData, userSites])
 
   return (
-    <ul className="grid sm:grid-cols-3 xs:grid-cols-2 gap-x-4 gap-y-4">
-      {sitesIsLoading && <Loading />}
-      {sites &&
-        sites.map((site: TSites, index: number) => (
+    <ul className="w-full grid sm:grid-cols-2 xs:grid-cols-1 gap-x-4 gap-y-4">
+      {sitesData &&
+        sitesData.map((site: TSites, index: number) => (
           <li key={site.siteCode}>
             <input
-              // {...register('siteCodes')}
               type="checkbox"
               name="service-option"
               id={`option-${index}`}
               className="sr-only peer"
+              checked={checkedSites.includes(site.siteCode)}
               onChange={(e) => {
-                // clearErrors('siteCodes')
-                const siteCode = sites[index].siteCode
+                const siteCode = sitesData[index].siteCode
                 if (e.target.checked) {
                   setCheckedSite((prevCheckedSite) => [
                     ...prevCheckedSite,
@@ -41,7 +53,9 @@ export default function EditService() {
               className="flex p-5 justify-between items-start cursor-pointer rounded-lg ring-1 ring-gray-300 peer-checked:ring-2 peer-checked:ring-indigo-500"
             >
               <div>
-                <div className="text-base font-semibold">{site.siteName}</div>
+                <div className="text-lg sm:text-base font-semibold break-words">
+                  {site.siteName}
+                </div>
               </div>
               {checkedSites.includes(site.siteCode) ? (
                 <CheckCircleIcon className="w-5 fill-indigo-500" />

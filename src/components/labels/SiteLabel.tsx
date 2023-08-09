@@ -1,7 +1,11 @@
 import React from 'react'
 import { TSiteLabel } from '../../types/commonTypes'
 
-export default function SiteLabel({ siteName, siteCode }: TSiteLabel) {
+export default function SiteLabel({
+  siteName,
+  siteCode,
+  margin = '',
+}: TSiteLabel) {
   const color = (colorCode: string) => {
     const colorMap: { [key: string]: string } = {
       NAVER: 'bg-green-50 text-green-700',
@@ -15,7 +19,7 @@ export default function SiteLabel({ siteName, siteCode }: TSiteLabel) {
 
   return (
     <strong
-      className={`mr-2 &:first-of-type:mr-0 text-sm sm:text-base rounded-full px-3 py-1.5 font-medium ${color(
+      className={`mr-2 &:first-of-type:mr-0 text-sm sm:text-base rounded-full px-3 py-1.5 font-medium ${margin} ${color(
         siteCode,
       )}`}
     >

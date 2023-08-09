@@ -17,7 +17,7 @@ export const useLogin = () => {
   const { refetch } = useQuery(['userInfo', email], () => getUserInfo(email), {
     enabled: false,
     onSuccess: (data) => {
-      setUserInfo(data.email, data.nickname)
+      setUserInfo(data.email, data.nickname, data.sites)
       navigate('/mypage')
     },
   })

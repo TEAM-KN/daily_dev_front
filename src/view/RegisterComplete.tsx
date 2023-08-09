@@ -5,7 +5,7 @@ import Header from '../layouts/Header'
 import { userInfoState } from '../recoil/userInfo'
 
 export default function RegisterComplete() {
-  const useInfo = useRecoilValue(userInfoState)
+  const userInfo = useRecoilValue(userInfoState)
 
   return (
     <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -15,12 +15,22 @@ export default function RegisterComplete() {
           WELCOME!
         </h1>
         <p className="mt-6 text-md sm:text-lg text-gray-600 break-keep leading-7 sm:leading-8">
-          <strong>{useInfo.nickname}</strong>님, 데일리데브 회원가입을
+          <strong>{userInfo.nickname}</strong>님, 데일리데브 회원가입을
           축하합니다.
           <br />
-          선택하신 구독 서비스를{' '}
-          <span className="text-indigo-600">{useInfo.email}</span>로
-          보내드리겠습니다.
+          {userInfo.sites.length ? (
+            <>
+              선택하신 구독 서비스를{' '}
+              <span className="text-indigo-600">{userInfo.email}</span>로
+              보내드릴게요.
+            </>
+          ) : (
+            <>
+              구독하고 싶은 서비스를 선택하시면{' '}
+              <span className="text-indigo-600">{userInfo.email}</span>로
+              보내드릴게요.
+            </>
+          )}
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <a
@@ -30,7 +40,10 @@ export default function RegisterComplete() {
             시작하기
           </a>
           <Link to="/mypage" className="text-md font-semibold text-gray-900">
-            구독 서비스 변경하기 <span aria-hidden="true">&rarr;</span>
+            {userInfo.sites.length
+              ? '구독 서비스 변경하기'
+              : '구독 서비스 선택하기'}{' '}
+            <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </div>
