@@ -199,10 +199,7 @@ export default function MyPage() {
                 <button
                   onClick={() => saveSites()}
                   disabled={isDisabled}
-                  className={`m-auto w-full sm:w-56 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 text-small font-medium text-white shadow-sm hover:bg-indigo-700 ${
-                    isDisabled &&
-                    `bg-gray-200 text-gray-600 transition duration-300 hover:bg-gray-200`
-                  } `}
+                  className={`m-auto w-full sm:w-56 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 text-small font-medium text-white shadow-sm hover:bg-indigo-700 disabled:bg-gray-200 disabled:text-gray-600 disabled:hover:bg-gray-200 `}
                 >
                   저장하기
                 </button>
