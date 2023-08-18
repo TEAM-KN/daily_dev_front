@@ -11,10 +11,10 @@ export default function EditUserInfo() {
       <Header />
       <div className="">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
             회원 정보 수정
           </h2>
-          <section className="mt-16 sm:mt-20">
+          <section className="mt-10 sm:mt-20">
             <dl className="divide-y divide-gray-100">
               <Email />
               <Nickname />
@@ -25,7 +25,7 @@ export default function EditUserInfo() {
           <section className="mt-12 sm:mt-20">
             <a
               href="/mypage"
-              className="m-auto w-full sm:w-56 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 text-small font-medium text-white shadow-sm hover:bg-indigo-700"
+              className="m-auto w-full sm:w-56 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               완료
             </a>

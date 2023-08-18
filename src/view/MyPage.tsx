@@ -27,18 +27,18 @@ export default function MyPage() {
       <Header />
       <div className="">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
             마이페이지
           </h2>
-          <section className="mx-auto mt-16 sm:mt-20 rounded-3xl ring-1 ring-gray-200 p-6 sm:p-10">
+          <section className="mx-auto mt-10 sm:mt-20 rounded-3xl ring-1 ring-gray-200 p-6 sm:p-10">
             <div className="flex items-center justify-between flex-wrap gap-y-4 gap-x-4">
               <div className="flex items-center">
                 <UserCircleIcon
-                  className="w-20 h-20 text-gray-300"
+                  className="w-16 h-16 sm:w-20 sm:h-20 text-gray-300"
                   aria-hidden="true"
                 />
                 <div className="ml-2 sm:ml-4">
-                  <h3 className="text-2xl font-bold tracking-tight text-gray-900">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                     {userInfo.nickname}
                   </h3>
                   <p className="text-base text-gray-700">{userInfo.email}</p>
@@ -61,7 +61,7 @@ export default function MyPage() {
               <div className="mt-6 border-t border-gray-100">
                 <dl className="divide-y divide-gray-100">
                   <div className="py-6 grid sm:grid-cols-3">
-                    <dt className="text-md mb-3 font-semibold leading-6 text-gray-900">
+                    <dt className="text-sm sm:text-base mb-3 font-semibold leading-6 text-gray-900">
                       구독 중인 서비스
                     </dt>
                     <dd className="text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
@@ -76,7 +76,7 @@ export default function MyPage() {
           <section className="mt-10 sm:mt-20 m-auto text-center">
             <button
               onClick={logout}
-              className="m-auto w-full sm:w-56 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 text-small font-medium text-white shadow-sm hover:bg-indigo-700"
+              className="m-auto w-full sm:w-56 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               로그아웃
             </button>
@@ -85,7 +85,7 @@ export default function MyPage() {
                 confirm('정말 탈퇴하시겠어요?') &&
                   mutateDeleteUser(userInfo.email)
               }}
-              className="mt-6 text-gray-500 hover:text-gray-600"
+              className="mt-6 text-gray-500 hover:text-gray-600 text-base"
             >
               회원탈퇴
               <span aria-hidden="true"> &rarr;</span>

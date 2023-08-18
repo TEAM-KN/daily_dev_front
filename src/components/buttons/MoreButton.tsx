@@ -21,7 +21,7 @@ export default function MoreButton({
   return (
     <button
       onClick={viewMoreContent}
-      className="flex justify-center items-center rounded-full bg-white px-14 py-4 text-md text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+      className="flex justify-center items-center rounded-full bg-white px-14 py-4 text-sm sm:text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
     >
       <span className="mr-2">더 보기</span>
       <ChevronDownIcon className="w-4" />
