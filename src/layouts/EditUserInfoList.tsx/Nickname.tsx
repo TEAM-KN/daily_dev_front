@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { userInfoState } from '../../recoil/userInfo'
+import { userInfoState } from '../../recoil/userInfoState'
 import EditButtons from './EditButtons'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { postUserInfo } from '../../service/apis'

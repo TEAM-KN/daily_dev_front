@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSetRecoilState } from 'recoil'
-import { userInfoState } from '../recoil/userInfo'
+import { userInfoState } from '../recoil/userInfoState'
 
 export const useSetUserInfo = () => {
   const setUserInfoState = useSetRecoilState(userInfoState)

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { TSites } from '../types/commonTypes'
 import { useRecoilValue } from 'recoil'
-import { userInfoState } from '../recoil/userInfo'
+import { userInfoState } from '../recoil/userInfoState'
 
 type TEditService = {
   sitesData: [TSites]
