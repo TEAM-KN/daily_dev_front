@@ -38,8 +38,7 @@ export default function PostList() {
     'contents',
     async () => {
       const data = await getContents()
-      const result = data.reverse()
-      return result
+      return data
     },
     {
       onSuccess: (data) => {
