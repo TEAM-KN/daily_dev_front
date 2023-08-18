@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { KeyIcon } from '@heroicons/react/24/outline'
+import { KeyIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { modalState } from '../../recoil/useModalState'
 import { useMutation } from 'react-query'
@@ -8,6 +8,7 @@ import { userInfoState } from '../../recoil/userInfoState'
 
 export default function PWConfirm({ Dialog, cancelButtonRef }: any) {
   const [modal, setModal] = useRecoilState(modalState)
+  const [errorMsg, setErrorMsg] = useState('')
   const userInfo = useRecoilValue(userInfoState)
   const [password, setPassword] = useState<string>('')
   const { mutate } = useMutation(postUserCheck, {
@@ -15,10 +16,11 @@ export default function PWConfirm({ Dialog, cancelButtonRef }: any) {
       modal.callback && modal.callback(password)
     },
     onError: () => {
-      console.log('검증 실패')
+      setErrorMsg('비밀번호가 일치하지 않습니다')
     },
   })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorMsg('')
     setPassword(e.target.value)
   }
   const onSubmit = () => {
@@ -49,6 +51,12 @@ export default function PWConfirm({ Dialog, cancelButtonRef }: any) {
               placeholder="비밀번호"
               className="w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
             />
+            {errorMsg && (
+              <p className="flex items-center mt-2 text-xs leading-5 text-pink-500">
+                <ExclamationCircleIcon className="stroke-pink-500 fill-none inline w-4 mr-1" />
+                {errorMsg}
+              </p>
+            )}
           </div>
         </div>
       </div>
