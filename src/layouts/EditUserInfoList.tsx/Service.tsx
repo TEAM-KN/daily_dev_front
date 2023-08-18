@@ -135,11 +135,7 @@ export default function Service() {
           )}
         </div>
 
-        <div
-          className={`sm:w-32 text-right sm:mt-0  ${
-            isEditing ? 'mt-4' : 'mt-0.5'
-          }`}
-        >
+        <div className="sm:w-32 text-right mt-4 sm:mt-0">
           {!isEditing ? (
             <button
               onClick={() => setIsEditing(true)}
