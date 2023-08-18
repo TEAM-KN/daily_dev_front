@@ -60,8 +60,8 @@ export default function MyPage() {
             <div>
               <div className="mt-6 border-t border-gray-100">
                 <dl className="divide-y divide-gray-100">
-                  <div className="py-6 grid sm:grid-cols-3 gap-y-3">
-                    <dt className="text-md mb-2 font-semibold leading-6 text-gray-900">
+                  <div className="py-6 grid sm:grid-cols-3">
+                    <dt className="text-md mb-3 font-semibold leading-6 text-gray-900">
                       구독 중인 서비스
                     </dt>
                     <dd className="text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">

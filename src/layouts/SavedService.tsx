@@ -7,14 +7,13 @@ export default function SavedService() {
   const userInfo = useRecoilValue(userInfoState)
 
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap gap-2">
       {userInfo.sites.length ? (
         userInfo.sites.map((site: TSiteLabel) => (
           <SiteLabel
             key={site.siteCode}
             siteName={site.siteName}
             siteCode={site.siteCode}
-            margin="mb-2 sm:mb-0"
           />
         ))
       ) : (
