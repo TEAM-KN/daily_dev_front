@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { userInfoState } from '../../recoil/userInfo'
+import { userInfoState } from '../../recoil/userInfoState'
 import { deleteUserSites, getSites, postUserSites } from '../../service/apis'
 import { TSites } from '../../types/commonTypes'
 import EditService from '../EditService'
 import SavedService from '../SavedService'
 import { ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
+import { modalState } from '../../recoil/useModalState'
 
 export default function Service() {
   const [errorMsg, setErrorMsg] = useState('')
@@ -14,6 +15,7 @@ export default function Service() {
   const [checkedSites, setCheckedSite] = useState<string[]>([])
   const userInfo = useRecoilValue(userInfoState)
   const setUserInfo = useSetRecoilState(userInfoState)
+  const setModal = useSetRecoilState(modalState)
 
   // 사이트 조회 API 호출
   const { data: sitesData } = useQuery('sites', getSites)
@@ -72,7 +74,7 @@ export default function Service() {
   // 구독 정보 삭제 API 호출
   const { mutate: mutateDeleteUserSites } = useMutation(deleteUserSites, {
     onSuccess: () => {
-      alert('구독이 취소가 완료됐어요')
+      setModal({ open: false })
       setIsEditing(false)
       setUserInfo({
         ...userInfo,
@@ -83,8 +85,17 @@ export default function Service() {
 
   // 구독 취소하기
   const unsubscribe = () => {
-    confirm('구독을 취소하면 메일 전송이 중단됩니다. 정말 취소하시겠어요?') &&
-      mutateDeleteUserSites(userInfo.email)
+    setModal({
+      open: true,
+      type: 'alert',
+      title: '정말 구독을 취소하시겠어요?',
+      desc: '구독을 취소하면 메일 전송이 중단됩니다.',
+      cancleBtn: '아니요',
+      confirmBtn: '네 취소할게요',
+      callback: () => {
+        mutateDeleteUserSites(userInfo.email)
+      },
+    })
   }
 
   return (
