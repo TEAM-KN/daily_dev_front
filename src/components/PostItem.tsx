@@ -21,10 +21,12 @@ function NoPostItem() {
   return (
     <div className="text-center py-36">
       <NewspaperIcon className="inline w-10 text-gray-300" />
-      <strong className="text-xl font-semibold block mt-3">
+      <strong className="text-xl sm:text-2xl font-semibold block mt-3">
         아직 준비 중이에요
       </strong>
-      <p className="text-sm text-gray-400 mt-1">조금만 기다려주세요!</p>
+      <p className="text-sm sm:text-base text-gray-400 mt-1">
+        조금만 기다려주세요!
+      </p>
     </div>
   )
 }

@@ -18,7 +18,7 @@ export default function TabButton({
   return (
     <button
       onClick={onClick}
-      className={`inline-block px-6 py-3 rounded-lg cursor-pointer whitespace-nowrap transition duration-200 ${hoverStyle}`}
+      className={`text-sm sm:text-base inline-block px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg cursor-pointer whitespace-nowrap transition duration-200 ${hoverStyle}`}
     >
       {text}
     </button>

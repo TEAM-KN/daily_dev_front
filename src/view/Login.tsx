@@ -5,6 +5,7 @@ import { useLogin } from '../hooks/useLogin'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { TLoginInfo } from '../types/commonTypes'
 import Loading from '../components/Loading'
+import { input, label } from '../styles/style.input'
 
 export default function Login() {
   const { login, isLoading, errorMessage, setErrorMessage } = useLogin()
@@ -28,10 +29,7 @@ export default function Login() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-md px-6 py-12 shadow-lg rounded-lg bg-white">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
+              <label htmlFor="email" className={`${label}`}>
                 이메일
               </label>
               <div className="mt-2">
@@ -47,17 +45,14 @@ export default function Login() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className={`block w-full ${input}`}
                 />
               </div>
             </div>
 
             <div>
               <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
+                <label htmlFor="password" className={`${label}`}>
                   비밀번호
                 </label>
               </div>
@@ -74,7 +69,7 @@ export default function Login() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className={`block w-full ${input}`}
                 />
               </div>
             </div>
@@ -96,7 +91,7 @@ export default function Login() {
             </div>
           </form>
         </div>
-        <p className="mt-10 text-center text-sm text-gray-500">
+        <p className="mt-10 text-center text-sm sm:text-base text-gray-500">
           회원이 아니신가요?
           <a
             href="/register"

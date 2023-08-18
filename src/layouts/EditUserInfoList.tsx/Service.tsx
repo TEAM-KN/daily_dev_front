@@ -8,6 +8,7 @@ import EditService from '../EditService'
 import SavedService from '../SavedService'
 import { ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid'
 import { modalState } from '../../recoil/useModalState'
+import { label } from '../../styles/style.input'
 
 export default function Service() {
   const [errorMsg, setErrorMsg] = useState('')
@@ -100,7 +101,7 @@ export default function Service() {
 
   return (
     <div className="px-0 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-      <dt className="text-md font-medium leading-6 text-gray-900">
+      <dt className={`${label}`}>
         구독 서비스
         {isEditing && userInfo.sites.length > 0 && (
           <button

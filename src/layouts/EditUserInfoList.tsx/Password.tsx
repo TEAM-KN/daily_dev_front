@@ -6,6 +6,7 @@ import { modalState } from '../../recoil/useModalState'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { useMutation } from 'react-query'
 import { postUserPassword } from '../../service/apis'
+import { input, label } from '../../styles/style.input'
 
 type TPassword = {
   password: string
@@ -62,7 +63,7 @@ export default function Password() {
       onSubmit={handleSubmit(onSubmit)}
       className="px-0 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
     >
-      <dt className="text-md font-medium leading-6 text-gray-900">비밀번호</dt>
+      <dt className={`${label}`}>비밀번호</dt>
       <dd className="sm:flex block justify-between items-start mt-3 sm:mt-0 text-md leading-6 text-gray-700 sm:col-span-2">
         <div className="flex-1">
           <ul>
@@ -86,7 +87,7 @@ export default function Password() {
                 id="password"
                 name="password"
                 type="password"
-                className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
+                className={`block w-full ${input}`}
               />
             </li>
             {errors.password && (
@@ -113,7 +114,7 @@ export default function Password() {
                 name="passwordConfirm"
                 type="password"
                 placeholder="비밀번호 확인"
-                className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
+                className={`block w-full ${input}`}
               />
             </li>
             {errors.passwordConfirm && errors.passwordConfirm.message && (
