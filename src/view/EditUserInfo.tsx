@@ -7,7 +7,7 @@ import Header from '../layouts/Header'
 
 export default function EditUserInfo() {
   return (
-    <main className={`bg-white px-6 py-24 sm:py-32 lg:px-8`}>
+    <main className={`relative bg-white px-6 py-24 sm:py-32 lg:px-8`}>
       <Header />
       <div className="">
         <div className="mx-auto max-w-4xl">
