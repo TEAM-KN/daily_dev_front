@@ -3,7 +3,7 @@ import Header from '../layouts/Header'
 
 export default function Landing() {
   return (
-    <main className="bg-white h-screen overflow-hidden">
+    <main className="relative bg-white h-screen overflow-hidden">
       <Header />
       <div className="relative isolate h-full px-6 pt-14 lg:px-8 flex justify-center items-center">
         <section className="text-center">

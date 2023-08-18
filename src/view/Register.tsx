@@ -101,7 +101,7 @@ export default function Register() {
 
   return (
     <main
-      className={`isolate bg-slate-50 px-6 py-24 sm:py-32 lg:px-8 min-h-screen`}
+      className={`relative isolate bg-slate-50 px-6 py-24 sm:py-32 lg:px-8 min-h-screen`}
     >
       <Header />
       {sitesIsLoading || postAuthJoinIsLoading ? (

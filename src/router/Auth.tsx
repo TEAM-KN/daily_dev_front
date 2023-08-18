@@ -2,17 +2,22 @@ import { lazy, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TRouterItem } from '../types/commonTypes'
 
-const MyPage = lazy(() => import('../view/MyPage'))
 const RegisterComplete = lazy(() => import('../view/RegisterComplete'))
+const MyPage = lazy(() => import('../view/MyPage'))
+const EditUserInfo = lazy(() => import('../view/EditUserInfo'))
 
 const AuthRoutesInfo: TRouterItem[] = [
+  {
+    path: '/register/complete',
+    element: <RegisterComplete />,
+  },
   {
     path: '/mypage',
     element: <MyPage />,
   },
   {
-    path: '/register/complete',
-    element: <RegisterComplete />,
+    path: '/mypage/edit',
+    element: <EditUserInfo />,
   },
 ]
 
