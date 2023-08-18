@@ -69,3 +69,15 @@ export const deleteUserSites = async (email: string): Promise<any> => {
   const { data } = await customAxios.delete(`/user/sites?email=${email}`)
   return data
 }
+
+// 회원 정보 검증 (패스워드 검증)
+export const postUserCheck = async (formData: object): Promise<any> => {
+  const { data } = await customAxios.post(`/user/check`, formData)
+  return data
+}
+
+// 패스워드 수정
+export const postUserPassword = async (formData: object): Promise<any> => {
+  const { data } = await customAxios.post(`/user/password`, formData)
+  return data
+}
