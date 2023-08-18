@@ -5,7 +5,7 @@ import PostList from '../layouts/PostList'
 
 export default function Main() {
   return (
-    <main className="px-0 sm:px-6 py-24 sm:py-32 lg:px-8">
+    <main className="relative px-0 sm:px-6 py-24 sm:py-32 lg:px-8">
       <Header />
       <PostList />
       <ScrollTopButton />

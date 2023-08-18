@@ -2,13 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import Header from '../layouts/Header'
-import { userInfoState } from '../recoil/userInfo'
+import { userInfoState } from '../recoil/userInfoState'
 
 export default function RegisterComplete() {
   const userInfo = useRecoilValue(userInfoState)
 
   return (
-    <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <main className="relative grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
       <Header />
       <div className="text-center py-32 sm:py-48 lg:py-50">
         <h1 className="text-5xl sm:text-6xl font-bold text-gray-900">

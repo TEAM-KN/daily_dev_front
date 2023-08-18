@@ -8,7 +8,9 @@ import Routes from './router'
 import { QueryClient, QueryClientProvider } from 'react-query'
 // recoil
 import { RecoilRoot } from 'recoil'
+// components
 import Loading from './components/Loading'
+import Modal from './components/Modal/Modal'
 
 const queryClient = new QueryClient()
 
@@ -21,6 +23,7 @@ function App() {
             <Routes />
           </Suspense>
         </BrowserRouter>
+        <Modal />
       </QueryClientProvider>
     </RecoilRoot>
   )

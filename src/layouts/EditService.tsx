@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { TSites } from '../types/commonTypes'
 import { useRecoilValue } from 'recoil'
-import { userInfoState } from '../recoil/userInfo'
+import { userInfoState } from '../recoil/userInfoState'
 
 type TEditService = {
   sitesData: [TSites]
@@ -24,7 +24,7 @@ export default function EditService({
   }, [sitesData, userSites])
 
   return (
-    <ul className="w-full grid sm:grid-cols-2 xs:grid-cols-1 gap-x-4 gap-y-4">
+    <ul className="w-full grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2  gap-x-4 gap-y-4">
       {sitesData &&
         sitesData.map((site: TSites, index: number) => (
           <li key={site.siteCode}>
@@ -53,7 +53,7 @@ export default function EditService({
               className="flex p-5 justify-between items-start cursor-pointer rounded-lg ring-1 ring-gray-300 peer-checked:ring-2 peer-checked:ring-indigo-500"
             >
               <div>
-                <div className="text-lg sm:text-base font-semibold break-words">
+                <div className="text-md font-semibold break-words">
                   {site.siteName}
                 </div>
               </div>

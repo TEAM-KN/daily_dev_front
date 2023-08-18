@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil'
 import SiteLabel from '../components/labels/SiteLabel'
-import { userInfoState } from '../recoil/userInfo'
+import { userInfoState } from '../recoil/userInfoState'
 import { TSiteLabel } from '../types/commonTypes'
 
 export default function SavedService() {
