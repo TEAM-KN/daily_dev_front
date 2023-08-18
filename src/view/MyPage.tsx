@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../layouts/Header'
 import { UserCircleIcon, PencilSquareIcon } from '@heroicons/react/24/solid'
 import { useLogout } from '../hooks/useLogout'
-import { userInfoState } from '../recoil/userInfo'
+import { userInfoState } from '../recoil/userInfoState'
 import { useRecoilValue } from 'recoil'
 import { useMutation } from 'react-query'
 import { deleteUser } from '../service/apis'
@@ -23,7 +23,7 @@ export default function MyPage() {
   })
 
   return (
-    <main className={`bg-white px-6 py-24 sm:py-32 lg:px-8`}>
+    <main className={`relative bg-white px-6 py-24 sm:py-32 lg:px-8`}>
       <Header />
       <div className="">
         <div className="mx-auto max-w-4xl">
