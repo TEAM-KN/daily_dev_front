@@ -6,6 +6,7 @@ import EditButtons from './EditButtons'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { postUserInfo } from '../../service/apis'
 import { useMutation } from 'react-query'
+import { input, label } from '../../styles/style.input'
 
 type TNickname = {
   nickname: string
@@ -59,7 +60,7 @@ export default function Nickname() {
       onSubmit={handleSubmit(onSubmit)}
       className="px-0 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
     >
-      <dt className="text-md font-medium leading-6 text-gray-900">닉네임</dt>
+      <dt className={`${label}`}>닉네임</dt>
       <dd className="sm:flex block justify-between mt-3 sm:mt-0 text-md leading-6 text-gray-700 sm:col-span-2">
         <div className="flex-1">
           <input
@@ -70,7 +71,7 @@ export default function Nickname() {
             name="nickname"
             type="text"
             disabled={!isEditing}
-            className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
+            className={`block w-full ${input}`}
           />
           {errors.nickname && (
             <p className="flex items-center mt-2 text-xs leading-5 text-pink-500">

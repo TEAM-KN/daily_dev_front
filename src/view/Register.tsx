@@ -12,6 +12,7 @@ import { getSites, getAuthIsCheck, postAuthJoin } from '../service/apis'
 import Loading from '../components/Loading'
 import { useSetUserInfo } from '../hooks/useSetUserInfo'
 import { TUserInfo, TSites } from '../types/commonTypes'
+import { input, label } from '../styles/style.input'
 
 export default function Register() {
   const navigate = useNavigate()
@@ -109,15 +110,15 @@ export default function Register() {
       ) : (
         <>
           <div className="mx-auto max-w-2xl">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
               회원가입
             </h2>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="mx-auto mt-16 sm:mt-20"
+              className="mx-auto mt-10 sm:mt-20"
             >
               <div className="border-b border-gray-900/10 pb-12">
-                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   {/* <div className="sm:col-span-full">
               <label
                 htmlFor="email"
@@ -149,10 +150,7 @@ export default function Register() {
             </div> */}
 
                   <div className="sm:col-span-full">
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
+                    <label htmlFor="email" className={`${label}`}>
                       이메일
                     </label>
                     <div className="mt-2 flex items-center gap-x-3">
@@ -173,7 +171,7 @@ export default function Register() {
                         name="email"
                         type="email"
                         placeholder="example@example.com"
-                        className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className={`block w-full ${input}`}
                       />
                       {isCheckLoading ? (
                         <button
@@ -211,10 +209,7 @@ export default function Register() {
                     )}
                   </div>
                   <div className="sm:col-span-full">
-                    <label
-                      htmlFor="nickname"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
+                    <label htmlFor="nickname" className={`${label}`}>
                       닉네임
                     </label>
                     <div className="mt-2 flex items-center gap-x-3">
@@ -229,7 +224,7 @@ export default function Register() {
                         id="nickname"
                         name="nickname"
                         type="text"
-                        className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className={`block w-full ${input}`}
                       />
                     </div>
                     {errors.nickname && (
@@ -241,10 +236,7 @@ export default function Register() {
                   </div>
                   <div className="sm:col-span-full grid grid-cols-1 gap-x-3 gap-y-2 sm:grid-cols-6">
                     <div className="sm:col-span-3">
-                      <label
-                        htmlFor="password"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
+                      <label htmlFor="password" className={`${label}`}>
                         비밀번호
                       </label>
                       <div className="mt-2">
@@ -260,7 +252,7 @@ export default function Register() {
                           type="password"
                           name="password"
                           id="password"
-                          className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className={`block w-full ${input}`}
                         />
                       </div>
                       {errors.password && (
@@ -271,10 +263,7 @@ export default function Register() {
                       )}
                     </div>
                     <div className="sm:col-span-3">
-                      <label
-                        htmlFor="passwordConfirm"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
+                      <label htmlFor="passwordConfirm" className={`${label}`}>
                         비밀번호 확인
                       </label>
                       <div className="mt-2">
@@ -294,7 +283,7 @@ export default function Register() {
                           type="password"
                           name="passwordConfirm"
                           id="passwordConfirm"
-                          className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className={`block w-full ${input}`}
                         />
                       </div>
                       {errors.passwordConfirm &&
