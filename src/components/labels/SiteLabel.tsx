@@ -13,7 +13,7 @@ export default function SiteLabel({
       DAANGN: 'bg-orange-50 text-orange-600',
       WOO: 'bg-blue-50 text-blue-700',
       LINE: 'bg-lime-50 text-lime-700',
-      지마켓: 'bg-green-50 text-blue-700',
+      GMARKET: 'bg-green-50 text-blue-700',
     }
 
     return colorMap[colorCode] || 'bg-gray-100 text-gray-700'
