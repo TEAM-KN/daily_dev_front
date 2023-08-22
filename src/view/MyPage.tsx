@@ -3,24 +3,40 @@ import Header from '../layouts/Header'
 import { UserCircleIcon, PencilSquareIcon } from '@heroicons/react/24/solid'
 import { useLogout } from '../hooks/useLogout'
 import { userInfoState } from '../recoil/userInfoState'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { useMutation } from 'react-query'
 import { deleteUser } from '../service/apis'
 import { useNavigate } from 'react-router-dom'
 import SavedService from '../layouts/SavedService'
+import { modalState } from '../recoil/useModalState'
 
 export default function MyPage() {
   const navigate = useNavigate()
   const userInfo = useRecoilValue(userInfoState)
   const { logout } = useLogout()
+  const setModal = useSetRecoilState(modalState)
 
   // 탈퇴 API 호출
   const { mutate: mutateDeleteUser } = useMutation(deleteUser, {
     onSuccess: () => {
+      setModal({ open: false })
       localStorage.clear()
       navigate('/')
     },
   })
+
+  const Confirm = () => {
+    setModal({
+      open: true,
+      type: 'alert',
+      title: '정말 탈퇴하시겠어요?',
+      cancleBtn: '아니요',
+      confirmBtn: '네 탈퇴할래요',
+      callback: () => {
+        mutateDeleteUser(userInfo.email)
+      },
+    })
+  }
 
   return (
     <main className={`relative bg-white px-6 py-24 sm:py-32 lg:px-8`}>
@@ -81,10 +97,7 @@ export default function MyPage() {
               로그아웃
             </button>
             <button
-              onClick={() => {
-                confirm('정말 탈퇴하시겠어요?') &&
-                  mutateDeleteUser(userInfo.email)
-              }}
+              onClick={() => Confirm()}
               className="mt-6 text-gray-500 hover:text-gray-600 text-base"
             >
               회원탈퇴
