@@ -5,7 +5,7 @@ import { userInfoState } from '../../recoil/userInfoState'
 import { modalState } from '../../recoil/useModalState'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { useMutation } from 'react-query'
-import { postUserPassword } from '../../service/apis'
+import { postUserPassword } from '../../apis/api'
 import { input, label } from '../../styles/style.input'
 
 type TPassword = {

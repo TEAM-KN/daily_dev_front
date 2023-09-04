@@ -3,7 +3,7 @@ import { KeyIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { modalState } from '../../recoil/useModalState'
 import { useMutation } from 'react-query'
-import { postUserCheck } from '../../service/apis'
+import { postUserCheck } from '../../apis/api'
 import { userInfoState } from '../../recoil/userInfoState'
 
 export default function PWConfirm({ Dialog, cancelButtonRef }: any) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getContents, getSites } from '../service/apis'
+import { getContents, getSites } from '../apis/api'
 import { useQuery } from 'react-query'
 import SitesButton from './SiteTabList'
 import PostItem from '../components/PostItem'

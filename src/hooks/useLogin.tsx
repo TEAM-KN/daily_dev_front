@@ -3,7 +3,7 @@ import { useMutation, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { isLoggedInState } from '../recoil/useLoginState'
-import { getAuthLogin, getUserInfo } from '../service/apis'
+import { getAuthLogin, getUserInfo } from '../apis/api'
 import { useSetUserInfo } from './useSetUserInfo'
 
 export const useLogin = () => {
