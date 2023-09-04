@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '../assets/images/dd_logo.svg'
 import { UserCircleIcon } from '@heroicons/react/24/solid'
+import { useRecoilValue } from 'recoil'
+import { isLoggedInState } from '../recoil/useLoginState'
 
 export default function Header() {
+  const isLoggedIn = useRecoilValue(isLoggedInState)
+
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <nav
@@ -15,7 +19,7 @@ export default function Header() {
             <img className="h-8 w-auto" src={Logo} alt="Daily Dev" />
           </a>
         </div>
-        {localStorage.getItem('access-token') ? (
+        {isLoggedIn ? (
           <a href="/mypage">
             <span className="sr-only">마이페이지</span>
             <UserCircleIcon className="w-11 text-gray-300" aria-hidden="true" />

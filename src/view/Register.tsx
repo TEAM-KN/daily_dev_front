@@ -13,10 +13,13 @@ import Loading from '../components/Loading'
 import { useSetUserInfo } from '../hooks/useSetUserInfo'
 import { TUserInfo, TSites } from '../types/commonTypes'
 import { input, label } from '../styles/style.input'
+import { useSetRecoilState } from 'recoil'
+import { isLoggedInState } from '../recoil/useLoginState'
 
 export default function Register() {
   const navigate = useNavigate()
   const { setUserInfo } = useSetUserInfo()
+  const setLoggedInState = useSetRecoilState(isLoggedInState)
   const [checkedSites, setCheckedSite] = useState<string[]>([])
   const [isEmailChecked, setIsEmailChecked] = useState(false)
   const [validEmailMessage, setValidEmailMessage] = useState<string>('')
@@ -52,6 +55,7 @@ export default function Register() {
           variables.nickname,
           sites.filter((item: TSites) => checkedSites.includes(item.siteCode)),
         )
+        setLoggedInState(true)
 
         setTimeout(() => {
           navigate('complete')

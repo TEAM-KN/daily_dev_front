@@ -11,6 +11,7 @@ import { RecoilRoot } from 'recoil'
 // components
 import Loading from './components/Loading'
 import Modal from './components/Modal/Modal'
+import Header from './layouts/Header'
 
 const queryClient = new QueryClient()
 
@@ -18,6 +19,7 @@ function App() {
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
+        <Header />
         <BrowserRouter basename="/">
           <Suspense fallback={<Loading />}>
             <Routes />

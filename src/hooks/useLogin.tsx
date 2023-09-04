@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { isLoggedInState } from '../recoil/useLoginState'
 import { getAuthLogin, getUserInfo } from '../service/apis'
 import { useSetUserInfo } from './useSetUserInfo'
 
 export const useLogin = () => {
+  const setIsLoggedInState = useSetRecoilState(isLoggedInState)
   const [email, setEmail] = useState<string>('')
   const [errorMessage, setErrorMessage] = useState<string>('')
   const navigate = useNavigate()
@@ -32,6 +35,7 @@ export const useLogin = () => {
     mutate(data, {
       onSuccess: () => {
         setEmail(data.email)
+        setIsLoggedInState(true)
       },
       onError: () => {
         setErrorMessage('이메일이나 비밀번호를 다시 확인해주세요')
