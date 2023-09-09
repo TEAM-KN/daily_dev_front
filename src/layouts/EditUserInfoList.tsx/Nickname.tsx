@@ -31,7 +31,6 @@ export default function Nickname() {
     unregister,
     handleSubmit,
     setValue,
-    setError,
     getValues,
     formState: { errors },
   } = useForm<TNickname>()
