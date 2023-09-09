@@ -4,7 +4,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { userInfoState } from '../../recoil/userInfoState'
 import EditButtons from './EditButtons'
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
-import { postUserInfo } from '../../service/apis'
+import { postUserInfo } from '../../apis/api'
 import { useMutation } from 'react-query'
 import { input, label } from '../../styles/style.input'
 
@@ -31,7 +31,6 @@ export default function Nickname() {
     unregister,
     handleSubmit,
     setValue,
-    setError,
     getValues,
     formState: { errors },
   } = useForm<TNickname>()
