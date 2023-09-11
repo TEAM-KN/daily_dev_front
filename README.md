@@ -35,8 +35,7 @@ https://youtu.be/OTiMhn4DVe0
 ## 사용 기술
 
 - React, TypeScript
-- React-Query
-- Recoil
+- React-Query, Recoil
 - TailwindCSS
 - Prettier
 
