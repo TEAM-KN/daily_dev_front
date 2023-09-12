@@ -5,7 +5,7 @@ import { useLogout } from '../hooks/useLogout'
 import { userInfoState } from '../recoil/userInfoState'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { useMutation } from 'react-query'
-import { deleteUser } from '../service/apis'
+import { deleteUser } from '../apis/api'
 import { useNavigate } from 'react-router-dom'
 import SavedService from '../layouts/SavedService'
 import { modalState } from '../recoil/useModalState'
@@ -40,7 +40,6 @@ export default function MyPage() {
 
   return (
     <main className={`relative bg-white px-6 py-24 sm:py-32 lg:px-8`}>
-      <Header />
       <div className="">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">

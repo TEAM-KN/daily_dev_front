@@ -1,10 +1,8 @@
 import React from 'react'
-import Header from '../layouts/Header'
 
 export default function Landing() {
   return (
     <main className="relative bg-white h-screen overflow-hidden">
-      <Header />
       <div className="relative isolate h-full px-6 pt-14 lg:px-8 flex justify-center items-center">
         <section className="text-center">
           <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900">
