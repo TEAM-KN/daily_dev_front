@@ -11,10 +11,6 @@
 
 <br />
 
-#### URL
-
-http://daily-dev-news.com
-
 #### 데모영상
 
 https://youtu.be/OTiMhn4DVe0
